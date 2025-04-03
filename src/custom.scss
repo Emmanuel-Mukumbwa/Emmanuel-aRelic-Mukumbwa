@@ -1,0 +1,152 @@
+// SCSS Variables
+$enable-shadows: true;
+$glass-bg: rgba(255, 255, 255, 0.05);
+
+// Define CSS theme variables
+body {
+  --bg-color: #D6EFFF;
+  --text-color: #1C1C1C;
+  --accent-color: #56B3FA;
+  --button-color: #5B2333;
+  --button-hover-color: #4A202A;
+  background-color: #D6EFFF;
+  color: #1C1C1C;
+  font-family: 'Qontra', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+// Global styles for the body using CSS variables
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+// Global animations using keyframes
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animated-fade {
+  animation: fadeIn 0.6s ease-out;
+}
+
+// Glassmorphism style for cards
+.glass-card {
+  background: rgba(28, 28, 28, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+// Gradient text effect
+.gradient-text {
+  background: linear-gradient(45deg, #1C1C1C, #444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Hover zoom effect for images or other elements
+.hover-zoom {
+  transition: transform 0.3s ease;
+}
+.hover-zoom:hover {
+  transform: scale(1.1);
+}
+
+// Button styling with solid colors
+.btn-primary {
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
+  &:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-3px);
+  }
+}
+
+// Responsive typography for headings
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+// Additional custom styles for a minimalist layout similar to Cleanfolio
+
+// Full-screen hero section with new gradient
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, #6DD5FA, #2193B0); // Calm Blue Gradient
+  text-align: center;
+}
+
+// Custom Navbar styling
+.navbar-custom {
+  background: rgba(28, 28, 28, 0.9);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  .navbar-brand, .nav-link {
+    color: #D6EFFF !important;
+    font-weight: 500;
+  }
+  .nav-link:hover {
+    color: var(--accent-color) !important;
+  }
+}
+
+// Footer styling
+footer {
+  background: rgba(28, 28, 28, 0.9);
+  color: #D6EFFF;
+  padding: 3rem 0;
+  .social-links {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  p {
+    font-weight: 500;
+  }
+}
+
+// Section Title Styling
+.section-title {
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(45deg, #F7F4F3, #5B2333);
+    bottom: -10px;
+    left: 0;
+  }
+}
+
+// Contact Form Styling
+.contact-card {
+  width: 100%;
+}
+
+// Projects Section Styling
+.card {
+  transition: transform 0.3s ease;
+  height: 100%;
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
