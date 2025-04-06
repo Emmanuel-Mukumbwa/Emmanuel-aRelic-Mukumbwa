@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Container, Navbar, Nav, Card, Button, Row, Col, Form } from 'react-bootstrap';
+import { Container, Navbar, Nav, Card, Button, Row, Col, Form, Spinner, Modal } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 import GlassCard from './GlassCard';
@@ -27,6 +27,14 @@ const skillIcons = {
 };
 
 function App() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     // Track page view on load
     ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
@@ -68,12 +76,6 @@ function App() {
     }
   ];
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -81,6 +83,7 @@ function App() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     emailjs
       .send(
@@ -91,12 +94,14 @@ function App() {
       )
       .then(
         (response) => {
-          alert('Email sent successfully!');
           setFormData({ name: '', email: '', message: '' });
+          setLoading(false);
+          setShowModal(true); // show success modal
         },
         (error) => {
-          alert('Failed to send email. Please try again later.');
           console.error('EmailJS Error:', error);
+          setLoading(false);
+          // You can also show an error modal here if needed.
         }
       );
   };
@@ -113,7 +118,6 @@ function App() {
       {/* Navigation */}
       <Navbar expand="lg" variant="light" className="glass-card navbar-custom">
         <Container>
-          {/* Shortened brand name for nav only */}
           <Navbar.Brand href="#hero">aRelic</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <FaCog size={24} color="#D6EFFF" />
@@ -129,6 +133,21 @@ function App() {
         </Container>
       </Navbar>
 
+      {/* Success Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Email Sent</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Your email was sent successfully!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       {/* Main Content wrapped with Framer Motion for smooth transitions */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -137,7 +156,7 @@ function App() {
         transition={{ duration: 0.5 }}
       >
         <main>
-          {/* Hero Section remains with the full name */}
+          {/* Hero Section */}
           <section id="hero" className="hero-section">
             <Container className="h-100 d-flex align-items-center justify-content-center">
               <AnimatedSection>
@@ -233,8 +252,15 @@ function App() {
                           required
                         />
                       </Form.Group>
-                      <Button variant="primary" type="submit">
-                        Send
+                      <Button variant="primary" type="submit" disabled={loading}>
+                        {loading ? (
+                          <>
+                            <Spinner animation="border" size="sm" role="status" aria-hidden="true" />
+                            <span className="ms-2">Sending...</span>
+                          </>
+                        ) : (
+                          'Send'
+                        )}
                       </Button>
                     </Form>
                   </Col>
