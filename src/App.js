@@ -9,9 +9,9 @@ import emailjs from '@emailjs/browser'; // Import EmailJS
 import './custom.scss';
 import './analytics';
 
-// Import React Icons for skills and social links
+// Import React Icons for skills, social links, and the gear (toggle) icon
 import { SiReact, SiBootstrap, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs, SiMysql, SiPostman } from 'react-icons/si';
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaWhatsapp, FaCog } from 'react-icons/fa';
 
 // Create a mapping of skills to their respective icon components
 const skillIcons = {
@@ -115,7 +115,10 @@ function App() {
       <Navbar expand="lg" variant="light" className="glass-card navbar-custom">
         <Container>
           <Navbar.Brand href="#hero">Emmanuel aRelic Mukumbwa</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          {/* Custom toggle with gear icon for improved visibility */}
+          <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <FaCog size={24} color="#D6EFFF" />
+          </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link href="#hero">Home</Nav.Link>
@@ -247,9 +250,8 @@ function App() {
           <Container>
             <p>&copy; {new Date().getFullYear()} Emmanuel aRelic Mukumbwa. All rights reserved.</p>
             <div className="social-links">
-              <a href="https://web.facebook.com/emmanuel.alingo/?viewas=100000686899395" target="_blank" rel="noopener noreferrer">
-                <FaFacebook size={24} color="white" />
-              </a>
+              {/* Example social links */}
+              <FaFacebook size={24} color="white" />
               <a href="https://github.com/Emmanuel-Mukumbwa" target="_blank" rel="noopener noreferrer">
                 <FaGithub size={24} color="white" />
               </a>
