@@ -5,12 +5,13 @@ import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 import GlassCard from './GlassCard';
 import ReactGA from 'react-ga4';
+import emailjs from '@emailjs/browser'; // Import EmailJS
 import './custom.scss';
 import './analytics';
 
 // Import React Icons for skills and social links
 import { SiReact, SiBootstrap, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs, SiMysql, SiPostman } from 'react-icons/si';
-import { FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 // Create a mapping of skills to their respective icon components
 const skillIcons = {
@@ -59,8 +60,47 @@ function App() {
       title: 'CampusTalent', 
       description: 'A platform connecting students with campus opportunities and top companies/organizations.', 
       link: 'https://campus-talent-frontend-git-main-emmanuels-projects-4148ec83.vercel.app/' 
+    },
+    { 
+      title: 'GoodHope Ministries Website', 
+      description: 'A website I created for GoodHope Ministries to showcase their mission and outreach programs.', 
+      link: 'https://goodhopeminstries.vercel.app/' 
     }
   ];
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        'service_9ctclhp', // EmailJS Service ID
+        'template_y2epmaa', // EmailJS Template ID
+        formData, // Form data
+        '-sFhXXDWE9DhA_mQB' // EmailJS Public Key
+      )
+      .then(
+        (response) => {
+          alert('Email sent successfully!');
+          // Reset form after successful submission
+          setFormData({ name: '', email: '', message: '' });
+        },
+        (error) => {
+          alert('Failed to send email. Please try again later.');
+          console.error('EmailJS Error:', error);
+        }
+      );
+  };
 
   return (
     <HelmetProvider>
@@ -156,18 +196,40 @@ function App() {
                 <h2 className="mb-4 text-center section-title">Contact</h2>
                 <Row className="justify-content-center">
                   <Col md={8} lg={6}>
-                    <Form action="https://formspree.io/f/yourFormId" method="POST">
+                    <Form onSubmit={sendEmail}>
                       <Form.Group className="mb-3" controlId="formName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter your name" name="name" required />
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter your name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter your email" name="email" required />
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter your email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formMessage">
                         <Form.Label>Message</Form.Label>
-                        <Form.Control as="textarea" rows={3} placeholder="Your message" name="message" required />
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          placeholder="Your message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Send
@@ -191,9 +253,9 @@ function App() {
               <a href="https://github.com/Emmanuel-Mukumbwa" target="_blank" rel="noopener noreferrer">
                 <FaGithub size={24} color="white" />
               </a>
-              {/*<a href="https://instagram.com/relicemmanuel" target="_blank" rel="noopener noreferrer">
-                <FaInstagram size={24} color="white" />
-              </a>*/}
+              <FaInstagram size={24} color="white" />
+              <FaLinkedin size={24} color="white" />
+              <FaWhatsapp size={24} color="white" />
             </div>
             <p className="mt-3">Let's build something amazing together!</p>
           </Container>
