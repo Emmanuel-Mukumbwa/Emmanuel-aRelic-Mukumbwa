@@ -62,7 +62,7 @@ function App() {
     { 
       title: 'Weather App', 
       description: 'Real-time weather information for any location.', 
-      link: 'https://weather-app-01-two.vercel.app/' 
+      link: 'https://weather-app-vert-theta-10.vercel.app/' 
     },
     { 
       title: 'CampusTalent', 
