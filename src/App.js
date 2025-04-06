@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 import GlassCard from './GlassCard';
 import ReactGA from 'react-ga4';
-import emailjs from '@emailjs/browser'; // Import EmailJS
+import emailjs from '@emailjs/browser';
 import './custom.scss';
 import './analytics';
 
@@ -92,7 +92,6 @@ function App() {
       .then(
         (response) => {
           alert('Email sent successfully!');
-          // Reset form after successful submission
           setFormData({ name: '', email: '', message: '' });
         },
         (error) => {
@@ -105,7 +104,7 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Emmanuel aRelic Mukumbwa | Portfolio</title>
+        <title>aRelic | Portfolio</title>
         <meta name="description" content="Full Stack Developer specializing in React, NodeJS, and modern web design." />
         <meta property="og:image" content="/og-image.png" />
         <link href="https://fonts.googleapis.com/css2?family=Qontra:wght@400;700&display=swap" rel="stylesheet" />
@@ -114,8 +113,8 @@ function App() {
       {/* Navigation */}
       <Navbar expand="lg" variant="light" className="glass-card navbar-custom">
         <Container>
-          <Navbar.Brand href="#hero">Emmanuel aRelic Mukumbwa</Navbar.Brand>
-          {/* Custom toggle with gear icon for improved visibility */}
+          {/* Shortened brand name for nav only */}
+          <Navbar.Brand href="#hero">aRelic</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <FaCog size={24} color="#D6EFFF" />
           </Navbar.Toggle>
@@ -138,7 +137,7 @@ function App() {
         transition={{ duration: 0.5 }}
       >
         <main>
-          {/* Hero Section */}
+          {/* Hero Section remains with the full name */}
           <section id="hero" className="hero-section">
             <Container className="h-100 d-flex align-items-center justify-content-center">
               <AnimatedSection>
@@ -248,9 +247,8 @@ function App() {
         {/* Footer */}
         <footer className="py-3 text-center">
           <Container>
-            <p>&copy; {new Date().getFullYear()} Emmanuel aRelic Mukumbwa. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} aRelic. All rights reserved.</p>
             <div className="social-links">
-              {/* Example social links */}
               <FaFacebook size={24} color="white" />
               <a href="https://github.com/Emmanuel-Mukumbwa" target="_blank" rel="noopener noreferrer">
                 <FaGithub size={24} color="white" />

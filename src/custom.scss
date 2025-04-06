@@ -80,7 +80,7 @@ h1 {
   }
 }
 
-// Additional custom styles for a minimalist layout similar to Cleanfolio
+// Additional custom styles for a minimalist layout
 
 // Full-screen hero section with new gradient
 .hero-section {
@@ -95,13 +95,27 @@ h1 {
 .navbar-custom {
   background: rgba(28, 28, 28, 0.9);
   border-bottom: 1px solid rgba(0,0,0,0.1);
-  .navbar-brand, .nav-link {
+
+  .navbar-brand {
+    // Logo styling for the brand text (now only "aRelic")
+    font-family: 'Qontra', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+    color: #D6EFFF !important;
+    // Remove text transformation so that only the "R" remains uppercase
+    text-transform: none;
+  }
+
+  .nav-link {
     color: #D6EFFF !important;
     font-weight: 500;
   }
+  
   .nav-link:hover {
     color: var(--accent-color) !important;
   }
+  
   // Navbar toggler styling (gear icon)
   .navbar-toggler {
     border-color: transparent;
