@@ -24,11 +24,11 @@ export default function MainNavbar() {
             <Nav.Link as={NavLink} to="/" end>
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/projects">
-              Projects
-            </Nav.Link>
             <Nav.Link as={NavLink} to="/about">
               About
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/projects">
+              Projects
             </Nav.Link>
             <Nav.Link as={NavLink} to="/contact">
               Contact

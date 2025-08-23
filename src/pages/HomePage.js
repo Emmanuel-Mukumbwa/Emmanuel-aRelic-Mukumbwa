@@ -69,6 +69,13 @@ export default function HomePage() {
 
                   <div className="d-flex gap-3 mt-4">
                     {/* Primary CTA - goes to contact with prefilled subject (qualifies leads) */}
+                     <Button
+                      href="/about"
+                      variant="success"
+                      aria-label="About Me"
+                    >
+                      About Me
+                    </Button>
                     <Button
                       href="/contact?subject=Request%20a%20quote"
                       variant="success"
@@ -80,7 +87,7 @@ export default function HomePage() {
                     {/* Secondary CTA - view CV page (we suggested /resume page earlier) */}
                     <Button
                       href="/resume"
-                      variant="outline-success"
+                      variant="success"
                       aria-label="View resume"
                     >
                       View CV

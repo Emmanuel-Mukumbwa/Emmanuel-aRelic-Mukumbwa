@@ -8,7 +8,7 @@ const projects = [
     description: `CampusTalent connects university students with vetted gigs and recruiters.
 Built as a full-stack React + Node.js application with recruiter verification,
 portfolio builder, and gig matching by skills.`,
-    heroImage: '/screenshots/campustalent-hero.png',
+    heroImage: 'projects/campus-hero.png',
     images: [
       '/screenshots/campustalent-1.png',
       '/screenshots/campustalent-2.png'

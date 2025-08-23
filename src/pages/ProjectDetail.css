@@ -1,11 +1,77 @@
-/* src/pages/ProjectDetail.css */
+/* ProjectDetail.css - improved hero & gallery styles so images are not cropped */
 
-.sticky-top {
+/* Sticky quote card */
+.project-quote-card {
   position: sticky;
+  top: 1rem;
 }
 
-/* Improve readability */
-.card-img-top {
-  object-fit: cover;
-  height: 220px;
+/* Card wrapper */
+.project-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* Hero wrapper: centers the image and provides a gentle background */
+.project-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fbfdff 0%, #f6f9fb 100%);
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Ensure the whole hero image shows (no cropping)
+   - max-height constrains visual size but preserves full image via object-fit: contain
+   - width:auto so aspect ratio is preserved */
+.project-hero-img {
+  max-width: 100%;
+  max-height: 420px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive reduction for small screens */
+@media (max-width: 767px) {
+  .project-hero-img {
+    max-height: 260px;
+  }
+}
+
+/* Gallery images: contain the whole image and keep aspect ratio */
+.project-gallery .project-gallery-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  padding: 0.25rem;
+  display: block;
+}
+
+/* Small shadow & rounded corners for images */
+.project-gallery .project-gallery-img {
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Small tweaks for card body readability */
+.project-card .card-body h5,
+.project-card .card-body h6 {
+  margin-top: 0.5rem;
+}
+
+/* Optional: make badges wrap nicely */
+.badge {
+  margin-bottom: 0.25rem;
+}
+
+/* Ensure sticky behaviour doesn't overlap on very small screens */
+@media (max-width: 991px) {
+  .project-quote-card {
+    position: relative;
+    top: auto;
+  }
 }
