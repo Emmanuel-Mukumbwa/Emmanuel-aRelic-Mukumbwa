@@ -1,0 +1,66 @@
+/*src/components/MainNavbar.css/*
+/* Minimal styles to match your theme and avoid the previous missing CSS error.
+   You can extend/tweak these or fold them into your existing custom.scss. */
+
+.navbar-custom {
+  background: rgba(28, 28, 28, 0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  padding: 0.5rem 0;
+  z-index: 1030;
+}
+
+.navbar-custom .brand-name {
+  font-family: 'Qontra', sans-serif;
+  color: #D6EFFF;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+}
+
+.navbar-custom .nav-link {
+  color: #D6EFFF !important;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #56B3FA !important;
+}
+
+.custom-toggler {
+  border: 0;
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+}
+
+.social-icons .social-link {
+  color: #D6EFFF;
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social-icons .social-link:hover {
+  color: #56B3FA;
+}
+
+/* Buttons */
+.navbar-custom .btn-outline-light {
+  border-color: rgba(214,239,255,0.12);
+  color: #D6EFFF;
+}
+
+.navbar-custom .btn-outline-light:hover {
+  background: rgba(214,239,255,0.03);
+  color: #fff;
+}
+
+/* Make sure small screens have a compact header */
+@media (max-width: 767px) {
+  .social-icons { display: none; }
+  .navbar-custom .brand-name { font-size: 1.1rem; }
+}

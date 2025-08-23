@@ -1,3 +1,5 @@
+// src/custom.scss
+
 // SCSS Variables
 $enable-shadows: true;
 $glass-bg: rgba(255, 255, 255, 0.05);
@@ -20,6 +22,9 @@ body {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
 // Global animations using keyframes
@@ -34,12 +39,13 @@ body {
 
 // Glassmorphism style for cards
 .glass-card {
-  background: rgba(28, 28, 28, 0.8);
+  background: rgba(28, 28, 28, 0.85);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
   padding: 20px;
+  color: #F7F7F7;
 }
 
 // Gradient text effect
@@ -51,20 +57,20 @@ body {
 
 // Hover zoom effect for images or other elements
 .hover-zoom {
-  transition: transform 0.3s ease;
+  transition: transform 0.28s cubic-bezier(.2,.8,.2,1);
 }
 .hover-zoom:hover {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
 // Button styling with solid colors
 .btn-primary {
-  background-color: var(--button-color);
-  color: white;
-  border: none;
-  transition: background 0.3s, transform 0.3s;
+  background-color: var(--button-color) !important;
+  color: white !important;
+  border: none !important;
+  transition: background 0.25s ease, transform 0.15s ease;
   &:hover {
-    background-color: var(--button-hover-color);
+    background-color: var(--button-hover-color) !important;
     transform: translateY(-3px);
   }
 }
@@ -84,60 +90,99 @@ h1 {
 
 // Full-screen hero section with new gradient
 .hero-section {
-  height: 100vh;
+  min-height: 72vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(45deg, #6DD5FA, #2193B0); // Calm Blue Gradient
-  text-align: center;
+  background: linear-gradient(135deg, #6DD5FA 0%, #2193B0 100%); // Calm Blue Gradient
+  text-align: left;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  .display-4 {
+    color: #0b2a33;
+  }
+}
+
+// HERO illustration styling
+.hero-illustration {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(17, 32, 40, 0.12);
 }
 
 // Custom Navbar styling
 .navbar-custom {
-  background: rgba(28, 28, 28, 0.9);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background: rgba(28, 28, 28, 0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  padding: 0.5rem 0;
+  z-index: 1030;
 
-  .navbar-brand {
-    // Logo styling for the brand text (now only "aRelic")
+  .navbar-brand, .brand-name {
     font-family: 'Qontra', sans-serif;
-    font-weight: 700;
-    font-size: 1.75rem;
-    letter-spacing: 1px;
     color: #D6EFFF !important;
-    // Remove text transformation so that only the "R" remains uppercase
-    text-transform: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.6px;
+    text-decoration: none;
   }
 
   .nav-link {
     color: #D6EFFF !important;
     font-weight: 500;
+    margin-right: 0.5rem;
   }
-  
+
   .nav-link:hover {
     color: var(--accent-color) !important;
   }
-  
+
   // Navbar toggler styling (gear icon)
   .navbar-toggler {
-    border-color: transparent;
+    border: 0;
+    background: transparent;
   }
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(214, 239, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  .social-icons .social-link {
+    color: #D6EFFF;
+    margin-right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .social-icons .social-link:hover {
+    color: var(--accent-color);
   }
 }
 
 // Footer styling
 footer {
-  background: rgba(28, 28, 28, 0.9);
+  background: rgba(28, 28, 28, 0.92);
   color: #D6EFFF;
   padding: 3rem 0;
+
   .social-links {
     margin: 2rem 0;
     display: flex;
     justify-content: center;
     gap: 1.5rem;
   }
+
   p {
     font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  a {
+    color: #D6EFFF;
+    text-decoration: underline;
   }
 }
 
@@ -147,27 +192,128 @@ footer {
   margin-bottom: 2rem;
   position: relative;
   display: inline-block;
+  color: #0b2a33;
   &::after {
     content: '';
     position: absolute;
     width: 50%;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(45deg, #F7F4F3, #5B2333);
     bottom: -10px;
     left: 0;
+    border-radius: 2px;
   }
 }
 
-// Contact Form Styling
+/* Contact Form Styling */
 .contact-card {
   width: 100%;
 }
 
-// Projects Section Styling
+.contact-card-body {
+  padding: 1rem;
+}
+
+/* Projects Section Styling */
+/* Ensure consistent card heights, pin actions to bottom and allow summary to grow */
+.project-grid .project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Summary takes remaining vertical space and will ellipsize if too long */
+.project-card .card-summary {
+  margin-bottom: 0.75rem;
+  color: rgba(255,255,255,0.85);
+  flex: 1 1 auto;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* show up to 3 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+/* Actions pinned to bottom */
+.project-card .card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Card hover */
 .card {
-  transition: transform 0.3s ease;
+  transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s;
   height: 100%;
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.18);
   }
 }
+
+/* Utility: smaller muted text color on glass backgrounds */
+.text-muted {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+/* Skill icons container */
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Hero stats / social proof */
+.hero-stats {
+  margin-top: 1rem;
+  color: rgba(11, 42, 51, 0.9);
+  font-weight: 600;
+}
+
+/* Small responsive tweaks */
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  .hero-section .display-4 { font-size: 2rem; }
+  .hero-illustration { max-height: 300px; }
+}
+
+@media (max-width: 576px) {
+  .skill-icon { width: 64px; height: 64px; }
+  .project-card .card-summary { -webkit-line-clamp: 4; }
+}
+
+/* Accessibility focus outlines (keyboard) */
+a:focus, button:focus, .nav-link:focus {
+  outline: 3px solid rgba(86, 179, 250, 0.25);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Small helpers */
+.text-white-50 {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* Ensure hero and site use consistent max width on content */
+.container {
+  max-width: 1100px;
+}
+
+/* End of custom.scss */

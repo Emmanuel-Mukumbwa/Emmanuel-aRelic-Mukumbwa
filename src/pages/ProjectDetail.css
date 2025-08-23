@@ -1,0 +1,11 @@
+/* src/pages/ProjectDetail.css */
+
+.sticky-top {
+  position: sticky;
+}
+
+/* Improve readability */
+.card-img-top {
+  object-fit: cover;
+  height: 220px;
+}

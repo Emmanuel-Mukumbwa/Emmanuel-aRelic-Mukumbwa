@@ -1,0 +1,6 @@
+/* src/components/MainNavbar.css */
+.navbar-custom {
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
