@@ -1,0 +1,114 @@
+/* Testimonials page styles (separate from About.css) */
+
+.testimonials-page {
+  background: transparent;
+  color: inherit;
+}
+
+/* header/title */
+.page-title {
+  font-size: 1.6rem;
+  margin-bottom: 0;
+}
+
+/* view controls alignment */
+.view-controls {
+  display: flex;
+  align-items: center;
+}
+
+/* Grid cards */
+.testimonial-card {
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: rgba(255,255,255,0.02);
+}
+.testimonial-card:hover,
+.testimonial-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+}
+
+.testimonial-avatar {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+.testimonial-avatar-lg {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.testimonial-company-logo {
+  max-width: 120px;
+  max-height: 36px;
+  object-fit: contain;
+  opacity: 0.95;
+  display: block;
+}
+
+/* short quote */
+.testimonial-short {
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.95);
+  margin: 0;
+}
+
+/* rating */
+.testimonial-rating svg {
+  color: #f5b301;
+}
+
+/* carousel specific */
+.testimonial-carousel .carousel-item {
+  padding: 0.5rem 0;
+}
+.carousel-testimonial {
+  display: flex;
+  align-items: center;
+}
+
+/* blockquote */
+.testimonial-quote p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.95);
+}
+
+/* responsiveness */
+@media (max-width: 767px) {
+  .carousel-testimonial {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .testimonial-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .testimonial-avatar-lg {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+/* subtle glass-card style (used for carousel wrapper) */
+.glass-card {
+  background: rgba(255,255,255,0.02);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}

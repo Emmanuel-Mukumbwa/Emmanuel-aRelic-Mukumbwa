@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+// src/pages/About.jsx
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
-  Container, Row, Col, Card, Button, Badge, Image, ListGroup, Carousel, Modal
+  Container, Row, Col, Card, Button, Badge, Image, ListGroup
 } from 'react-bootstrap';
 import { FaCheckCircle, FaDownload, FaStar } from 'react-icons/fa';
 import './About.css';
 import ContactForm from '../components/ContactForm';
+import testimonials from '../data/testimonials';
+import heroIllustration from '../assets/me.jpg';
+import defaultAvatar from '../assets/me.jpg';
 
 const services = [
   {
@@ -63,58 +67,9 @@ const timeline = [
   }
 ];
 
-// Testimonials with short + full text, date, optional avatar/logo and rating
-const testimonials = [
-  {
-    id: 1,
-    name: 'GoodHope Ministries',
-    role: 'Client (Mzuzu NGO)',
-    company: 'GoodHope Ministries',
-    date: 'Mar 2024',
-    quoteShort: 'Reliable and very responsive — built us a simple, fast site that our team can update without fuss.',
-    quoteFull: 'Reliable and very responsive — built us a simple, fast site that our team can update without fuss. The handover was clear, and Emmanuel followed up after deployment to help with the initial content updates. Highly recommended for small NGOs.',
-    avatar: '/logos/goodhope-avatar.png',
-    logo: '/logos/goodhope.png',
-    rating: 5
-  },
-  {
-    id: 2,
-    name: 'Campus Club President',
-    role: 'Student leader (Mzuni)',
-    company: 'Mzuni Robotics Club',
-    date: 'Jan 2025',
-    quoteShort: 'Helped us build a lightweight event sign-up system that actually made attendance tracking painless.',
-    quoteFull: 'Helped us build a lightweight event sign-up system that actually made attendance tracking painless. The system worked well on phones and used very little data — perfect for our members.',
-    avatar: '/avatars/student1.png',
-    logo: '/logos/mzuni-club.png',
-    rating: 5
-  },
-  {
-    id: 3,
-    name: 'Lecturer — Paradox',
-    role: 'Partner (Paradox Technical College)',
-    company: 'Paradox Technical College',
-    date: 'Dec 2023',
-    quoteShort: 'Clear explanations and practical workshops — students came away with real skills.',
-    quoteFull: 'Clear explanations and practical workshops — students came away with real skills. Emmanuel tailored examples to local contexts which made the sessions engaging and directly applicable.',
-    avatar: '/avatars/lecturer.png',
-    logo: '/logos/paradox.png',
-    rating: 4
-  }
-];
-
 export default function About() {
-  const [showModal, setShowModal] = useState(false);
-  const [activeTestimonial, setActiveTestimonial] = useState(null);
-
-  const openModal = (t) => {
-    setActiveTestimonial(t);
-    setShowModal(true);
-  };
-  const closeModal = () => {
-    setShowModal(false);
-    setActiveTestimonial(null);
-  };
+  // featured testimonials on About (first two)
+  const featured = testimonials.slice(0, 2);
 
   return (
     <>
@@ -134,14 +89,14 @@ export default function About() {
               <h1 className="mb-2">I make simple, reliable web applications for students, teams and small organisations.</h1>
 
               <p className="lead text-muted">
-                I’m Emmanuel — people call me <strong>aRelic</strong>. I grew up mostly in the northern region of Malawi,
+                I’m Emmanuel — people call me <strong>aRelic</strong>. I grew up mostly in the northern region of Malawi, 
                 studied ICT at Mzuni and taught practical computing in the North.
-                I build websites and applications that actually get used — whether
+                I build websites and applications that actually get used — whether 
                 that’s a student marketplace, a site for a local NGO, or a dashboard for a campus club.
               </p>
 
               <p className="text-muted small">
-                My work focuses on useful outcomes: faster processes, fewer support calls,
+                My work focuses on useful outcomes: faster processes, fewer support calls, 
                 and software that runs well on the phones and connections people already have here in Malawi.
               </p>
 
@@ -162,7 +117,7 @@ export default function About() {
 
             <Col lg={5} className="text-center mt-4 mt-lg-0">
               <Image
-                src="/hero-illustration.svg"
+                src={heroIllustration}
                 alt="Emmanuel illustration"
                 className="about-portrait hero-illustration"
                 fluid
@@ -214,52 +169,51 @@ export default function About() {
                 </Card.Body>
               </Card>
 
-              {/* TESTIMONIALS (refined) */}
+              {/* Featured testimonials (styled) */}
               <Card className="glass-card">
                 <Card.Body>
                   <h4 className="mb-3">What people say</h4>
 
-                  <Carousel className="testimonial-carousel" interval={8000} fade controls indicators>
-                    {testimonials.map(t => (
-                      <Carousel.Item key={t.id}>
-                        <div className="d-flex flex-column flex-md-row align-items-center gap-3 p-3">
-                          <div className="text-center text-md-start me-md-3">
-                            <Image
-                              src={t.avatar}
-                              alt={`${t.name} avatar`}
-                              onError={(e) => { e.target.onerror = null; e.target.src = '/default-avatar.png'; }}
-                              className="testimonial-avatar mb-2"
-                              roundedCircle
-                            />
+                  <div className="featured-testimonials d-flex flex-column gap-3">
+                    {featured.map((t) => (
+                      <div key={t.id} className="featured-tile d-flex gap-3 align-items-start" role="group" aria-label={`Testimonial from ${t.name}`}>
+                        <div className="featured-left text-center text-start">
+                          <Image
+                            src={t.avatar ?? defaultAvatar}
+                            alt={`${t.name} avatar`}
+                            className="featured-avatar"
+                            roundedCircle
+                            onError={(e) => { e.target.onerror = null; e.target.src = defaultAvatar; }}
+                          />
+                          {t.logo && <img src={t.logo} alt={`${t.company} logo`} className="featured-logo mt-2" onError={(e) => { e.target.style.display = 'none'; }} />}
+                        </div>
 
-                            {t.logo && (
-                              <div className="mt-2 mb-1">
-                                <img src={t.logo} alt={`${t.company} logo`} className="testimonial-company-logo" onError={(e) => { e.target.style.display = 'none'; }} />
-                              </div>
-                            )}
+                        <div className="flex-grow-1">
+                          <p className="featured-quote mb-2">“{t.quoteShort}”</p>
 
-                            <div className="testimonial-name"><strong>{t.name}</strong></div>
-                            <div className="text-muted small">{t.role} • <span className="text-muted">{t.date}</span></div>
+                          <div className="d-flex flex-wrap align-items-center gap-2 featured-meta">
+                            <div className="featured-name">{t.name}</div>
 
-                            <div className="testimonial-rating mt-2" aria-hidden>
-                              {Array.from({ length: t.rating }).map((_, i) => <FaStar key={i} className="me-1" />)}
-                            </div>
-                          </div>
+                            <div className="meta-dot" aria-hidden>•</div>
 
-                          <div className="flex-grow-1">
-                            <blockquote className="blockquote testimonial-quote mb-3">
-                              <p className="mb-1">“{t.quoteShort}”</p>
-                              <footer className="blockquote-footer text-muted mt-2">{t.company}</footer>
-                            </blockquote>
+                            <div className="text-muted small featured-role">{t.role}</div>
 
-                            <div>
-                              <Button variant="outline-success" size="sm" onClick={() => openModal(t)}>Read more</Button>
+                            <div className="meta-dot" aria-hidden>•</div>
+
+                            <div className="text-muted small featured-date">{t.date}</div>
+
+                            <div className="ms-auto d-flex align-items-center gap-1 featured-rating" aria-hidden>
+                              {Array.from({ length: t.rating }).map((_, i) => <FaStar key={i} className="star" />)}
                             </div>
                           </div>
                         </div>
-                      </Carousel.Item>
+                      </div>
                     ))}
-                  </Carousel>
+                  </div>
+
+                  <div className="mt-3">
+                    <Button variant="outline-success" href="/testimonials">See more testimonials</Button>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
@@ -273,7 +227,7 @@ export default function About() {
                     {skills.map(s => <Badge bg="secondary" key={s}>{s}</Badge>)}
                   </div>
 
-                  <hr />
+                  <hr /> 
 
                   <h6 className="mt-3">Who I work with</h6>
                   <ul>
@@ -298,23 +252,7 @@ export default function About() {
               </Card>
             </Col>
           </Row>
-
         </Container>
-
-        {/* Modal for full testimonial */}
-        <Modal show={showModal} onHide={closeModal} centered>
-          <Modal.Header closeButton>
-            <Modal.Title>{activeTestimonial?.name}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p className="text-muted small">{activeTestimonial?.role} — {activeTestimonial?.company} • {activeTestimonial?.date}</p>
-            <p>{activeTestimonial?.quoteFull}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={closeModal}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-
       </main>
     </>
   );

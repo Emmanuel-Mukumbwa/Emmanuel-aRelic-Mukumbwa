@@ -1,3 +1,10 @@
+/* src/pages/About.css
+   Complete, updated styles for About page including featured testimonials.
+   - Light / dark theme variables provided (auto-switch if you add .dark-theme or body.dark)
+   - Featured testimonials now have good contrast and readable metadata.
+*/
+
+/* -------------------- HERO / GENERAL -------------------- */
 .about-page .hero-stats .badge {
   font-weight: 600;
   opacity: 0.95;
@@ -10,6 +17,7 @@
   padding: 12px;
 }
 
+/* service tiles */
 .service-tile {
   background: rgba(255,255,255,0.02);
   border-radius: 8px;
@@ -22,73 +30,21 @@
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
+/* timeline items */
 .timeline-item {
   background: transparent;
   border: none;
   padding: .75rem 0;
 }
 
+/* blockquote base */
 .blockquote {
   border-left: 3px solid rgba(255,255,255,0.06);
   padding-left: 1rem;
   color: rgba(255,255,255,0.9);
 }
 
-/* ===== Testimonials styles ===== */
-.testimonial-carousel .carousel-item {
-  padding: 0.5rem 0;
-}
-
-.testimonial-avatar {
-  width: 84px;
-  height: 84px;
-  object-fit: cover;
-  border-radius: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  padding: 4px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  display: inline-block;
-}
-
-.testimonial-company-logo {
-  max-width: 120px;
-  max-height: 36px;
-  object-fit: contain;
-  opacity: 0.95;
-}
-
-.testimonial-quote p {
-  font-size: 1rem;
-  line-height: 1.45;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 0;
-}
-
-.testimonial-rating svg {
-  color: #f5b301; /* star color */
-}
-
-/* small spacing tweaks for the carousel */
-.testimonial-carousel .carousel-indicators {
-  bottom: -12px;
-}
-
-/* responsive tweaks */
-@media (max-width: 767px) {
-  .testimonial-avatar {
-    width: 64px;
-    height: 64px;
-  }
-  .testimonial-company-logo {
-    max-width: 100px;
-    max-height: 30px;
-  }
-  .service-tile {
-    padding: 0.75rem;
-  }
-}
-
-/* minor UI polish */
+/* glass-card (used in multiple places) */
 .glass-card {
   background: rgba(255,255,255,0.02);
   border: none;
@@ -96,3 +52,166 @@
   padding: 0;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
+
+/* -------------------- THEME VARIABLES -------------------- */
+/* Defaults assume a light background (text darker). Adjust .dark-theme or body.dark to invert. */
+:root {
+  --featured-quote-color: rgba(0,0,0,0.92);
+  --featured-meta-color: rgba(0,0,0,0.55);
+  --featured-name-color: #0f5132; /* bootstrap success-dark */
+  --featured-card-bg: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+  --featured-border: rgba(0,0,0,0.04);
+  --featured-avatar-border: rgba(255,255,255,0.02);
+}
+
+/* Dark-theme overrides: add .dark-theme to body or root when using dark UI */
+body.dark, .dark-theme {
+  --featured-quote-color: rgba(255,255,255,0.94);
+  --featured-meta-color: rgba(255,255,255,0.65);
+  --featured-name-color: #8be38b;
+  --featured-card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  --featured-border: rgba(255,255,255,0.03);
+  --featured-avatar-border: rgba(0,0,0,0.04);
+}
+
+/* -------------------- FEATURED TESTIMONIALS (About page) -------------------- */
+.featured-testimonials {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* tile */
+.featured-tile {
+  display: flex;
+  gap: 1rem;
+  padding: 0.9rem;
+  border-radius: 10px;
+  background: var(--featured-card-bg);
+  border: 1px solid var(--featured-border);
+  transition: transform .16s ease, box-shadow .16s ease;
+  align-items: flex-start;
+}
+.featured-tile:hover,
+.featured-tile:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* left column (avatar + logo) */
+.featured-left {
+  width: 96px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* avatar */
+.featured-avatar {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.05));
+  box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+  border: 1px solid var(--featured-avatar-border);
+}
+
+/* optional small org logo below avatar */
+.featured-logo {
+  max-width: 88px;
+  max-height: 28px;
+  object-fit: contain;
+  margin-top: 8px;
+  opacity: 0.96;
+  display: block;
+}
+
+/* quote text — uses variable for theme-aware contrast */
+.featured-quote {
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--featured-quote-color);
+  margin: 0 0 .35rem 0;
+}
+
+/* metadata row */
+.featured-meta {
+  margin-top: 0.45rem;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* name emphasis */
+.featured-name {
+  color: var(--featured-name-color);
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+/* role/date muted */
+.featured-role,
+.featured-date {
+  color: var(--featured-meta-color);
+  font-size: 0.85rem;
+}
+
+/* meta dot */
+.meta-dot {
+  color: var(--featured-meta-color);
+  font-size: 0.85rem;
+  margin: 0 4px;
+}
+
+/* rating stars (if used) */
+.featured-rating .star {
+  color: #f5b301;
+  font-size: 0.95rem;
+}
+
+/* small screens */
+@media (max-width: 767px) {
+  .featured-tile {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .featured-left {
+    width: 72px;
+  }
+  .featured-avatar {
+    width: 56px;
+    height: 56px;
+  }
+  .featured-quote {
+    font-size: 0.98rem;
+  }
+}
+
+/* optional: subtle divider between featured section and other content */
+.card .featured-testimonials + .mt-3 {
+  margin-top: 1rem;
+}
+
+/* -------------------- SMALL POLISH & FALLBACKS -------------------- */
+/* Ensure the blockquote color for other uses gets a readable fallback */
+.blockquote {
+  color: rgba(0,0,0,0.8);
+}
+
+/* If your site uses an overall dark background without .dark-theme, you can force
+   testimonials to use the light-on-dark palette by uncommenting this block:
+   (Only enable if you know your site background is dark and texts are white.)
+*/
+/*
+:root {
+  --featured-quote-color: rgba(255,255,255,0.94);
+  --featured-meta-color: rgba(255,255,255,0.65);
+  --featured-name-color: #8be38b;
+}
+*/
+
+/* -------------------- END -------------------- */
