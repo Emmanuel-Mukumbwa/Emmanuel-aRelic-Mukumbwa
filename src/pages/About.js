@@ -77,7 +77,8 @@ export default function About() {
         <title>About — Emmanuel (aRelic) Mukumbwa</title>
         <meta
           name="description"
-          content="About Emmanuel (aRelic) — full stack developer and ICT educator from Mzuzu. Services include web apps, mobile-money aware integrations, dashboards and mentoring."
+          content="About Emmanuel (aRelic) — full stack developer and ICT 
+          educator from lilongwe, Malawi. Services include web apps, mobile-money aware integrations, dashboards and mentoring."
         />
       </Helmet>
 

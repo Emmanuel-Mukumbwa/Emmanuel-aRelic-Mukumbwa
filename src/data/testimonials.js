@@ -5,9 +5,12 @@
 import goodhopeAvatar from '../assets/avatars/test01.jpg';
 import studentAvatar from '../assets/avatars/test02.jpg';
 import lecturerAvatar from '../assets/avatars/test03.jpg';
-import goodhopeLogo from '../assets/logos/test04.jpg';
+import paychanguAvatar from '../assets/avatars/test03.jpg'; // new - add file
+import recruiterAvatar from '../assets/avatars/test03.jpg'; // new - add file
+import goodhopeLogo from '../assets/logos/test06.jpg';
 import mzuniClubLogo from '../assets/logos/test05.jpg';
 import paradoxLogo from '../assets/logos/test06.jpg';
+import paychanguLogo from '../assets/logos/test04.jpg'; // new - add file
 import defaultAvatar from '../assets/default.jpg';
 
 const testimonials = [
@@ -24,19 +27,7 @@ const testimonials = [
     logo: goodhopeLogo,
     rating: 5
   },
-  {
-    id: 2,
-    name: 'Campus Club President',
-    role: 'Student leader (Mzuni)',
-    company: 'Mzuni Robotics Club',
-    date: 'Jan 2025',
-    quoteShort: 'Helped us build a lightweight event sign-up system that actually made attendance tracking painless.',
-    quoteFull:
-      'Helped us build a lightweight event sign-up system that actually made attendance tracking painless. The system worked well on phones and used very little data — perfect for our members.',
-    avatar: studentAvatar || defaultAvatar,
-    logo: mzuniClubLogo,
-    rating: 5
-  },
+  
   {
     id: 3,
     name: 'Lecturer — Paradox',
@@ -49,6 +40,34 @@ const testimonials = [
     avatar: lecturerAvatar || defaultAvatar,
     logo: paradoxLogo,
     rating: 4
+  },
+  // New: PayChangu integration testimonial (friend / developer help)
+  {
+    id: 4,
+    name: 'Product Owner — Local e-commerce',
+    role: 'Merchant (Lilongwe)',
+    company: 'Local e-commerce',
+    date: 'Jun 2025',
+    quoteShort: 'Helped integrate PayChangu so our store accepts mobile money and bank transfers reliably.',
+    quoteFull:
+      'Emmanuel helped us integrate the PayChangu payment gateway into our store. He set up sandbox keys, implemented secure webhook handling, and tested mobile money and instant bank-transfer flows end-to-end. After go-live he assisted with monitoring and small fixes — payments have been stable since. Highly recommended for any merchant needing a dependable payments integration.',
+    avatar: paychanguAvatar || defaultAvatar,
+    logo: paychanguLogo,
+    rating: 5
+  },
+  // New: CampusTalent / recruiter testimonial
+  {
+    id: 5,
+    name: 'Recruiter — Local Startup',
+    role: 'Recruiter',
+    company: 'Mzuzu Startup',
+    date: 'Aug 2025',
+    quoteShort: 'Implemented a verification and escrow-like flow that gave us confidence to hire students through the platform.',
+    quoteFull:
+      'We used Emmanuel’s CampusTalent platform to hire interns — the recruiter verification and escrow-style workflow reduced risk and made payments straightforward. The UI was intuitive and support was prompt when we needed small tweaks.',
+    avatar: recruiterAvatar || defaultAvatar,
+    logo: mzuniClubLogo,
+    rating: 5
   }
 ];
 

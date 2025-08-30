@@ -23,7 +23,7 @@ export default function Resume() {
                 <Row className="align-items-center mb-3">
                   <Col md={8}>
                     <h2 className="mb-1">Emmanuel (aRelic) Mukumbwa</h2>
-                    <div className="text-muted">Web Developer & ICT Educator — Mzuzu, Malawi</div>
+                    <div className="text-muted">Web Developer & ICT Educator — Lilongwe, Malawi</div>
                     <div className="mt-2">
                       <Badge bg="success" className="me-2">React</Badge>
                       <Badge bg="success" className="me-2">Node.js</Badge>
@@ -54,7 +54,7 @@ export default function Resume() {
                 <Row className="mb-4">
                   <Col md={4}>
                     <strong>Location</strong>
-                    <div className="text-muted">Mzuzu, Malawi</div>
+                    <div className="text-muted">Lilongwe, Malawi</div>
                   </Col>
                   <Col md={4}>
                     <strong>Phone</strong>
@@ -70,7 +70,9 @@ export default function Resume() {
                 <section className="mb-3">
                   <h5>Professional Summary</h5>
                   <p className="text-muted">
-                    Resourceful Full-Stack Developer and ICT instructor with professional experience designing end-to-end web applications. Expert in React, Node.js, and modern JavaScript tooling; focused on building maintainable, tested, responsive web apps and clear handover documentation.
+                    Resourceful Full-Stack Developer and ICT instructor with professional experience 
+                    designing end-to-end web applications. Expert in React, Node.js, and modern JavaScript tooling; 
+                    focused on building maintainable, tested, responsive web apps and clear handover documentation.
                   </p>
                 </section>
 
