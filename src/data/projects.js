@@ -29,7 +29,8 @@ portfolio builder, and gig matching by skills.`,
       'Platform-ready for onboarding recruiters'
     ],
     demo: 'https://campus-talent-front-end-f28i.vercel.app/',
-    repo: 'https://github.com/Emmanuel-Mukumbwa/campus-talent-frontend'
+    repo: 'https://github.com/Emmanuel-Mukumbwa/campus-talent-frontend',
+    category: 'Platform'
   },
   {
     id: 2,
@@ -44,7 +45,8 @@ portfolio builder, and gig matching by skills.`,
     features: ['Search by city', 'Favorites', '7-day forecast'],
     outcome: ['Polished UI, mobile friendly'],
     demo: 'https://weather-app-vert-theta-10.vercel.app/',
-    repo: ''
+    repo: '',
+    category: 'Utility'
   },
   {
     id: 3,
@@ -59,7 +61,38 @@ portfolio builder, and gig matching by skills.`,
     features: ['Copy to clipboard', 'Complexity options'],
     outcome: ['Useful utility with small footprint'],
     demo: 'https://password-generator-app-lime.vercel.app/',
-    repo: ''
+    repo: '',
+    category: 'Utility'
+  },
+  // NEW: Industrial attachment project / case study
+  {
+    id: 4,
+    slug: 'tee-attachment',
+    title: 'Tee Components & Communications — Industrial Attachment',
+    shortDescription: 'Industrial attachment focusing on communications systems, diagnostics and final technical reporting.',
+    description: `Industrial attachment at Tee Components & Communications. Work included site diagnostics, system commissioning, cabling checks,
+signal troubleshooting, hands-on installations and preparation of a final technical attachment report validated by the industry supervisor.`,
+    heroImage: 'projects/tee-attachment.png',
+    images: [
+      '/screenshots/tee-1.png',
+      '/screenshots/tee-2.png'
+    ],
+    tech: ['Kali Linux', 'Python', 'Linux', 'Networking', 'Diagnostics', 'Technical Reporting'],
+    role: 'Industrial Attachment — Diagnostics & Final Report',
+    features: [
+      'Site diagnostics and signal testing',
+      'Device commissioning and cabling checks',
+      'Practical troubleshooting using Linux tools and Python scripts',
+      'Final technical report documenting methodology, findings and recommendations'
+    ],
+    outcome: [
+      'Final report validated by industry supervisor (Mr Hillary Namakhwa)',
+      'Improved site checklist and handover documentation',
+      'Demonstrated practical competency in communications diagnostics and reporting'
+    ],
+    demo: '',
+    repo: '',
+    category: 'Attachment / Field Work'
   }
 ];
 

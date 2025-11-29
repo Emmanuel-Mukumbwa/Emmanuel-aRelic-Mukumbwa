@@ -4,66 +4,103 @@ import { Helmet } from 'react-helmet-async';
 import {
   Container, Row, Col, Card, Button, Badge, Image, ListGroup
 } from 'react-bootstrap';
-import { FaCheckCircle, FaDownload, FaStar } from 'react-icons/fa';
+import {
+  FaCheckCircle,
+  FaDownload,
+  FaStar,
+  FaNetworkWired,
+  FaServer,
+  FaTools,
+  FaChalkboardTeacher,
+  FaShieldAlt,
+  FaCogs
+} from 'react-icons/fa';
 import './About.css';
 import ContactForm from '../components/ContactForm';
 import testimonials from '../data/testimonials';
 import heroIllustration from '../assets/me.jpg';
 import defaultAvatar from '../assets/me.jpg';
 
+// helper for DiceBear fallback avatars
+const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
+  `https://avatars.dicebear.com/api/identicon/${encodeURIComponent(seed)}.svg`;
+
+/**
+ * Services & skills now reflect a full ICT professional offering:
+ * - systems / network / communications / integrations / audits / training / reporting
+ */
+
 const services = [
   {
-    id: 'web-app',
-    title: 'Web & Mobile-friendly Apps',
-    desc: 'Responsive React front-ends and lightweight server APIs designed to work well even on limited data connections common in Malawi.',
-    bullets: ['Low-bandwidth optimisations', 'Responsive UI', 'Simple deployment & docs']
+    id: 'systems',
+    title: 'Systems & Server Administration',
+    icon: <FaServer />,
+    desc: 'Linux/Windows server support, basic configuration, backups and lightweight automation for small organisations and campus labs.',
+    bullets: ['Server provisioning', 'Backups & restoration', 'User & permission management']
   },
   {
-    id: 'api',
-    title: 'APIs & Integrations',
-    desc: 'Payment flows (including mobile-money patterns), webhook handlers and secure endpoints for local payments and services.',
-    bullets: ['Mobile money friendly flows', 'Webhook handling', 'Retry & idempotency']
+    id: 'networking',
+    title: 'Network & Communications',
+    icon: <FaNetworkWired />,
+    desc: 'Network setup, troubleshooting and documentation — from local LANs to WiFi coverage planning and simple router/firewall rules.',
+    bullets: ['LAN/WiFi planning', 'Basic routing & firewalling', 'Performance troubleshooting']
   },
   {
-    id: 'dashboard',
-    title: 'Admin Dashboards & Tools',
-    desc: 'Simple admin panels for staff, supervisors, or small NGOs to manage users, reports and basic exports without a steep learning curve.',
-    bullets: ['Role-based access', 'CSV exports', 'Charts & filters']
+    id: 'infrastructure',
+    title: 'Infrastructure & Cabling',
+    icon: <FaTools />,
+    desc: 'Physical setup guidance and small-scale infrastructure work (cabling best-practices, device placement and simple on-site commissioning).',
+    bullets: ['Cable organisation', 'Device placement', 'Site-checklists & handover']
   },
   {
-    id: 'audit',
-    title: 'UX, Accessibility & Performance',
-    desc: 'Quick audits and low-cost fixes that improve usability on mobile and older devices — higher task completion, fewer support requests.',
-    bullets: ['Performance profiling', 'Accessibility fixes', 'Actionable roadmap']
+    id: 'integrations',
+    title: 'Payment & Systems Integrations',
+    icon: <FaCogs />,
+    desc: 'Integrating local payment channels and external services (webhooks, idempotent endpoints and secure handling) for small e-commerce and campus tools.',
+    bullets: ['Mobile-money friendly flows', 'Webhook handling', 'Retry & idempotency']
+  },
+  {
+    id: 'security',
+    title: 'Security & Monitoring',
+    icon: <FaShieldAlt />,
+    desc: 'Lightweight auditing and monitoring for small organisations — quick wins to reduce risk and detect common issues early.',
+    bullets: ['Basic monitoring checks', 'Access control reviews', 'Actionable remediation']
   },
   {
     id: 'teaching',
-    title: 'Workshops & Mentorship',
-    desc: 'Hands-on workshops for campus teams and one-on-one mentoring for students building their first apps or portfolios.',
-    bullets: ['Practical labs', 'CV & portfolio coaching', 'Interview prep']
+    title: 'Training, Workshops & Mentorship',
+    icon: <FaChalkboardTeacher />,
+    desc: 'Hands-on workshops for campus teams, staff training, and mentorship for students building ICT projects or preparing reports.',
+    bullets: ['Practical labs', 'Report-writing coaching', 'CV & portfolio preparation']
   }
 ];
 
 const skills = [
-  'React', 'Node.js', 'Express', 'MySQL', 'Bootstrap', 'Accessibility', 'Testing (Jest)',
-  'CI/CD', 'Vercel/Netlify', 'Postman', 'EmailJS', 'GA4'
+  'Network fundamentals', 'System diagnostics', 'Linux basics', 'Windows Server', 'Router & firewall basics',
+  'VoIP / comms basics', 'Technical reporting', 'Troubleshooting', 'Documentation & handover',
+  'APIs & integrations', 'Payment flows', 'Testing & monitoring'
 ];
 
 const timeline = [
   {
-    year: '2022-25',
-    title: 'CampusTalent — Capstone & MVP',
-    detail: 'Developed as my final year capstone project while upgrading in ICT at Mzuzu University (2022–25). CampusTalent is a gig-marketplace that connects students with local recruiters. I designed and built the full-stack MVP with recruiter verification, student portfolios, and escrow-like payment flows — laying the foundation for a scalable student talent platform.'
+    year: '2024–25',
+    title: 'CampusTalent — Capstone & Systems Integration',
+    detail: 'Led design & implementation of a full-stack MVP that included recruiter verification and payment flows. Combined systems thinking with practical deployment and documentation suitable for campus-scale use.'
   },
   {
-    year: '2021-22',
+    year: 'Industrial Attachment',
+    title: 'Tee Components & Communications — Attachment / Final Report',
+    detail: 'Industrial attachment focusing on communications systems, diagnostics and site commissioning. Produced a final technical report documenting methodology, findings and practical recommendations validated by the industry supervisor.'
+  },
+  {
+    year: '2022–23',
     title: 'ICT Instructor — Paradox Technical College',
-    detail: 'Delivered practical labs and mentored students on foundational computing and small app projects across Chitipa and nearby districts.'
+    detail: 'Delivered practical labs and mentorship across Chitipa and neighbouring districts, prepared TEVETA-aligned lesson plans and supported students through hands-on projects.'
   },
   {
-    year: '2019-21',
-    title: 'Advanced Diploma — MUBAS',
-    detail: 'Strengthened my systems thinking and communications skills to design usable, maintainable applications.'
+    year: '2019–22',
+    title: 'Advanced Diploma & BSc studies',
+    detail: 'Advanced Diploma in Communication & Information Systems (MUBAS) and ongoing BSc in ICT (Mzuzu University) — strengthened applied systems and communications knowledge.'
   }
 ];
 
@@ -77,8 +114,7 @@ export default function About() {
         <title>About — Emmanuel (aRelic) Mukumbwa</title>
         <meta
           name="description"
-          content="About Emmanuel (aRelic) — full stack developer and ICT 
-          educator from lilongwe, Malawi. Services include web apps, mobile-money aware integrations, dashboards and mentoring."
+          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networking, communications, integrations and practical training in Malawi."
         />
       </Helmet>
 
@@ -87,24 +123,21 @@ export default function About() {
           {/* HERO / STORY */}
           <Row className="align-items-center mb-4">
             <Col lg={7}>
-              <h1 className="mb-2">I make simple, reliable web applications for students, teams and small organisations.</h1>
+              <h1 className="mb-2">Practical ICT solutions — systems, networks, training and reporting.</h1>
 
               <p className="lead text-muted">
-                I’m Emmanuel — people call me <strong>aRelic</strong>. I grew up mostly in the northern region of Malawi, 
-                studied ICT at Mzuni and taught practical computing in the North.
-                I build websites and applications that actually get used — whether 
-                that’s a student marketplace, a site for a local NGO, or a dashboard for a campus club.
+                I’m Emmanuel (aRelic). My work sits at the intersection of systems, communications and people: building reliable small-scale ICT systems,
+                supervising and documenting field attachments, and training campus teams and small organisations to run and maintain them.
               </p>
 
               <p className="text-muted small">
-                My work focuses on useful outcomes: faster processes, fewer support calls, 
-                and software that runs well on the phones and connections people already have here in Malawi.
+                I focus on outcomes that matter locally — resilient connections, clear technical reports, and tools that can be used and maintained with limited resources.
               </p>
 
               <div className="hero-stats d-flex gap-3 mt-3">
-                <Badge bg="success">5 projects</Badge>
-                <Badge bg="success">3 paying clients</Badge>
-                <Badge bg="success">Local-first thinking</Badge>
+                <Badge bg="success">Systems & Networks</Badge>
+                <Badge bg="success">Attachments & Technical Reports</Badge>
+                <Badge bg="success">Training & Mentorship</Badge>
               </div>
 
               <div className="mt-4 d-flex gap-2">
@@ -119,9 +152,13 @@ export default function About() {
             <Col lg={5} className="text-center mt-4 mt-lg-0">
               <Image
                 src={heroIllustration}
-                alt="Emmanuel illustration"
+                alt="Emmanuel portrait"
                 className="about-portrait hero-illustration"
                 fluid
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = getPlaceholder('Emmanuel-aRelic');
+                }}
               />
             </Col>
           </Row>
@@ -131,12 +168,15 @@ export default function About() {
             <Col lg={8}>
               <Card className="glass-card mb-4">
                 <Card.Body>
-                  <h4 className="mb-3">How I can help (practical examples)</h4>
+                  <h4 className="mb-3">How I help — practical examples</h4>
                   <Row xs={1} md={2} className="g-3">
                     {services.map(s => (
                       <Col key={s.id}>
                         <div className="service-tile p-3 h-100">
-                          <h5 className="mb-1">{s.title}</h5>
+                          <div className="d-flex align-items-start gap-2 mb-2">
+                            <div style={{ fontSize: 20, color: '#16a34a' }}>{s.icon}</div>
+                            <h5 className="mb-0">{s.title}</h5>
+                          </div>
                           <p className="text-muted small mb-2">{s.desc}</p>
                           <div className="small">
                             {s.bullets.map(b => (
@@ -170,53 +210,41 @@ export default function About() {
                 </Card.Body>
               </Card>
 
-              {/* Featured testimonials (styled) */}
-              <Card className="glass-card">
-                <Card.Body>
-                  <h4 className="mb-3">What people say</h4>
+              {/* References (instead of testimonials) */}
+<Card className="glass-card">
+  <Card.Body>
+    <h4 className="mb-3">References</h4>
 
-                  <div className="featured-testimonials d-flex flex-column gap-3">
-                    {featured.map((t) => (
-                      <div key={t.id} className="featured-tile d-flex gap-3 align-items-start" role="group" aria-label={`Testimonial from ${t.name}`}>
-                        <div className="featured-left text-center text-start">
-                          <Image
-                            src={t.avatar ?? defaultAvatar}
-                            alt={`${t.name} avatar`}
-                            className="featured-avatar"
-                            roundedCircle
-                            onError={(e) => { e.target.onerror = null; e.target.src = defaultAvatar; }}
-                          />
-                          {t.logo && <img src={t.logo} alt={`${t.company} logo`} className="featured-logo mt-2" onError={(e) => { e.target.style.display = 'none'; }} />}
-                        </div>
+    <div className="featured-references d-flex flex-column gap-3">
+      {featured.map((t) => (
+        <div key={t.id} className="reference-tile d-flex gap-3 align-items-start">
+          <div className="reference-left text-center text-start">
+            <Image
+              src={t.avatar ?? getPlaceholder(t.name)}
+              alt={`${t.name} avatar`}
+              className="featured-avatar"
+              roundedCircle
+              onError={(e) => { e.target.onerror = null; e.target.src = getPlaceholder(t.name); }}
+            />
+            {t.logo && <img src={t.logo} alt={`${t.company} logo`} className="featured-logo mt-2" onError={(e) => { e.target.style.display = 'none'; }} />}
+          </div>
 
-                        <div className="flex-grow-1">
-                          <p className="featured-quote mb-2">“{t.quoteShort}”</p>
+          <div className="flex-grow-1">
+            <div className="reference-name fw-semibold">{t.name}</div>
+            <div className="text-muted small reference-role">{t.role}</div>
+            <div className="text-muted small reference-company">{t.company}</div>
+            <div className="text-muted small reference-contact">Contact available on request</div>
+          </div>
+        </div>
+      ))}
+    </div>
 
-                          <div className="d-flex flex-wrap align-items-center gap-2 featured-meta">
-                            <div className="featured-name">{t.name}</div>
+    <div className="mt-3">
+      <Button variant="outline-success" href="/testimonials">See all references</Button>
+    </div>
+  </Card.Body>
+</Card>
 
-                            <div className="meta-dot" aria-hidden>•</div>
-
-                            <div className="text-muted small featured-role">{t.role}</div>
-
-                            <div className="meta-dot" aria-hidden>•</div>
-
-                            <div className="text-muted small featured-date">{t.date}</div>
-
-                            <div className="ms-auto d-flex align-items-center gap-1 featured-rating" aria-hidden>
-                              {Array.from({ length: t.rating }).map((_, i) => <FaStar key={i} className="star" />)}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-3">
-                    <Button variant="outline-success" href="/testimonials">See more testimonials</Button>
-                  </div>
-                </Card.Body>
-              </Card>
             </Col>
 
             {/* SIDEBAR: SKILLS + CONTACT */}
@@ -228,13 +256,13 @@ export default function About() {
                     {skills.map(s => <Badge bg="secondary" key={s}>{s}</Badge>)}
                   </div>
 
-                  <hr /> 
+                  <hr />
 
                   <h6 className="mt-3">Who I work with</h6>
                   <ul>
                     <li>Student founders and campus clubs</li>
-                    <li>Small businesses and NGOs in Malawi</li>
-                    <li>Researchers or lecturers who need simple tools</li>
+                    <li>Small businesses, NGOs and campus IT teams</li>
+                    <li>Researchers and lecturers who need practical systems tools</li>
                   </ul>
 
                   <div className="d-grid mt-3">

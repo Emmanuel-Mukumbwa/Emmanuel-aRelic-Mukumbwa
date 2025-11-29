@@ -25,6 +25,10 @@ function resolveAsset(path) {
   }
 }
 
+// small fallback for thumbnails when image fails
+const fallbackForTitle = (title) =>
+  `https://avatars.dicebear.com/api/gridy/${encodeURIComponent(title)}.svg`;
+
 export default function Projects() {
   return (
     <Container className="py-5">
@@ -42,16 +46,23 @@ export default function Projects() {
                       alt={p.title}
                       className="img-fluid project-thumb-img"
                       loading="lazy"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = fallbackForTitle(p.title);
+                      }}
                     />
                   </div>
                 ) : null}
 
                 <Card.Body className="d-flex flex-column">
-                  <h5 className="mb-1">{p.title}</h5>
+                  <h5 className="mb-1">
+                    {p.title}{' '}
+                    {p.category && <Badge bg="secondary" className="ms-2">{p.category}</Badge>}
+                  </h5>
                   <p className="text-muted small mb-3">{p.shortDescription}</p>
 
                   <div className="mb-3">
-                    {(p.tech || []).slice(0, 4).map(t => (
+                    {(p.tech || []).slice(0, 6).map(t => (
                       <Badge bg="light" text="dark" className="me-1 mb-1" key={t}>
                         {t}
                       </Badge>

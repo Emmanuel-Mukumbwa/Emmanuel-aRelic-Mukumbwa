@@ -11,7 +11,8 @@ const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 const Contact = lazy(() => import('./pages/Contact'));
 const About = lazy(() => import('./pages/About'));
 const GetStarted = lazy(() => import('./pages/GetStarted'));
-const Resume = lazy(() => import('./pages/Resume')); // new resume viewer/detail page
+const Resume = lazy(() => import('./pages/Resume')); 
+const Testimonials = lazy(() => import('./pages/Testimonials'));
 // optionally add other pages you plan to create: Services, Blog, etc.
 
 function LoaderFallback() {
@@ -25,7 +26,7 @@ function LoaderFallback() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
       <MainNavbar />
       <Suspense fallback={<LoaderFallback />}>
         <Routes>
@@ -38,6 +39,7 @@ function App() {
           {/* Resume / CV viewing (both routes point to same page) */}
           <Route path="/resume" element={<Resume />} />
           <Route path="/cv" element={<Resume />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           {/* Fallback route(s) can be added here */}
         </Routes>
       </Suspense>

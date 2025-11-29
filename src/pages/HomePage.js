@@ -16,38 +16,85 @@ import {
   SiGit,
   SiNodedotjs,
   SiMysql,
-  SiPostman
+  SiPostman,
+  SiPython
 } from 'react-icons/si';
+import {
+  FaServer,
+  FaNetworkWired,
+  FaTools,
+  FaCogs,
+  FaChalkboardTeacher,
+  FaShieldAlt,
+  FaLinux
+} from 'react-icons/fa';
+import './Home.css';
 
-// import hero image from src/assets — add your image file there
-// create src/assets/hero-illustration.svg (or .png/.jpg) and commit it.
-// If you prefer using public folder, use: const heroImg = '/hero-illustration.svg';
+// hero image (local asset) — fallback to DiceBear identicon if missing
 import heroImg from '../assets/me.jpg';
 
+// Icons map — a mix of development and broader ICT icons
 const skillIcons = {
-  React: <SiReact size={48} />,
-  Bootstrap: <SiBootstrap size={48} />,
-  JavaScript: <SiJavascript size={48} />,
-  HTML5: <SiHtml5 size={48} />,
-  CSS3: <SiCss3 size={48} />,
-  Git: <SiGit size={48} />,
-  NodeJS: <SiNodedotjs size={48} />,
-  MySQL: <SiMysql size={48} />,
-  Postman: <SiPostman size={48} />
+  Systems: <FaServer size={48} />,
+  Networking: <FaNetworkWired size={48} />,
+  Infrastructure: <FaTools size={48} />,
+  Integrations: <FaCogs size={48} />,
+  'Training & Docs': <FaChalkboardTeacher size={48} />,
+  Security: <FaShieldAlt size={48} />,
+  'Kali Linux': <FaLinux size={36} />,
+  Python: <SiPython size={36} />,
+
+  // retain developer tool icons too (useful for projects & technical credibility)
+  React: <SiReact size={36} />,
+  NodeJS: <SiNodedotjs size={36} />,
+  MySQL: <SiMysql size={36} />,
+  Postman: <SiPostman size={36} />,
+  Git: <SiGit size={36} />
 };
 
-const skills = ['React','Bootstrap','JavaScript','HTML5','CSS3','Git','NodeJS','MySQL','Postman'];
+// Skills ordered to display (these keys must match skillIcons where icons are used)
+const skills = [
+  'Systems',
+  'Networking',
+  'Infrastructure',
+  'Integrations',
+  'Security',
+  'Kali Linux',
+  'Python',
+  'Training & Docs',
+  'React',
+  'NodeJS',
+  'MySQL',
+  'Postman',
+  'Git'
+];
+
+// small helper to generate a DiceBear avatar URL for fallbacks
+const getPlaceholderAvatar = (seed = 'arelic') =>
+  `https://avatars.dicebear.com/api/identicon/${encodeURIComponent(seed)}.svg`;
 
 export default function HomePage() {
   useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+    try {
+      // safe guard: only send pageview if ReactGA is configured
+      if (typeof ReactGA?.send === 'function') {
+        ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
+      }
+    } catch (err) {
+      // non-fatal; don't break the page if GA isn't configured
+      // eslint-disable-next-line no-console
+      console.warn('ReactGA send failed', err);
+    }
   }, []);
 
   return (
     <>
       <Helmet>
-        <title>aRelic | Portfolio</title>
-        <meta name="description" content="Full Stack Developer specializing in React, NodeJS, and modern web design." />
+        <title>aRelic | ICT Professional</title>
+        <meta
+          name="description"
+          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networks, communications, attachments, reporting and training."
+        />
       </Helmet>
 
       <main>
@@ -59,55 +106,59 @@ export default function HomePage() {
                 <Col md={7}>
                   <h1 className="display-4 gradient-text mb-3">Emmanuel (aRelic) Mukumbwa</h1>
 
-                  {/* Strong value headline + subhead (higher-ROI text) */}
+                  {/* Reframed headline for ICT professional */}
                   <h2 className="h5 text-muted mb-3">
-                    I help startups and students ship usable React + Node apps that get real users.
+                    Systems, networks and communications — practical ICT solutions for campuses, NGOs and small businesses.
                   </h2>
                   <p className="lead text-muted">
-                    Clean front-ends, robust back-ends and clear handover docs — from payment integrations to admin dashboards.
+                    I design, deploy and document reliable, maintainable ICT systems — from site attachments and network checks to integrations and training. Practical, local-first solutions that staff can run and students can learn from.
                   </p>
 
                   <div className="d-flex gap-3 mt-4">
-                    {/* Primary CTA - goes to contact with prefilled subject (qualifies leads) */}
+                    {/* Primary CTA - goes to about page with services */}
                      <Button
                       href="/about"
                       variant="success"
-                      aria-label="About Me"
+                      aria-label="About Emmanuel"
                     >
-                      About Me
+                      About Emmanuel
                     </Button>
                     <Button
                       href="/contact?subject=Request%20a%20quote"
                       variant="success"
                       aria-label="Request a quote"
                     >
-                      Request Quote
+                      Request a quote
                     </Button>
 
-                    {/* Secondary CTA - view CV page (we suggested /resume page earlier) */}
+                    {/* Secondary CTA - view resume */}
                     <Button
                       href="/resume"
-                      variant="success"
+                      variant="outline-success"
                       aria-label="View resume"
                     >
                       View CV
                     </Button>
                   </div>
 
-                  {/* quick social proof / stats */}
+                  {/* quick proof / stats emphasising ICT work */}
                   <div className="mt-4 text-muted small">
-                    <strong>5 projects</strong> • <strong>3 paying clients</strong> • <strong>99% on-time delivery</strong>
+                    <strong>Systems deployed</strong> • <strong>Industrial attachments supervised</strong> • <strong>Workshops run</strong>
                   </div>
                 </Col>
 
                 {/* HERO ILLUSTRATION */}
                 <Col md={5} className="text-center mt-4 mt-md-0">
-                  {/* If heroImg fails to resolve, change to src: /hero-illustration.svg in public */}
+                  {/* If heroImg fails to resolve, fallback to generated identicon (DiceBear) */}
                   <img
                     src={heroImg}
-                    alt="Illustration of developer and projects"
+                    alt="Portrait of Emmanuel (aRelic) Mukumbwa"
                     className="hero-illustration img-fluid"
                     style={{ maxHeight: 360 }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Mukumbwa');
+                    }}
                   />
                 </Col>
               </Row>
@@ -123,7 +174,7 @@ export default function HomePage() {
               <Row className="justify-content-center">
                 {skills.map((s, i) => (
                   <Col key={i} xs={6} md={3} lg={2} className="text-center mb-4">
-                    <div className="skill-icon mb-2">{skillIcons[s]}</div>
+                    <div className="skill-icon mb-2" aria-hidden>{skillIcons[s]}</div>
                     <div className="text-muted small">{s}</div>
                   </Col>
                 ))}
@@ -132,21 +183,23 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* PROJECTS — ensure equal height cards via CSS classes below */}
+        {/* PROJECTS / ENGAGEMENTS — equal height cards */}
         <section id="projects" className="py-5">
           <Container>
             <AnimatedSection>
-              <h2 className="mb-4 text-center section-title">Selected Projects</h2>
+              <h2 className="mb-4 text-center section-title">Selected Work & Engagements</h2>
+              <p className="text-center text-muted small mb-4">
+                Case studies and project summaries covering software, systems and field attachments.
+              </p>
+
               <Row className="row-cols-1 row-cols-md-3 g-4 project-grid">
-                {projects.slice(0,3).map(p => (
+                {projects.slice(0, 4).map(p => (
                   <Col key={p.id}>
-                    {/* add 'project-card' class to apply equal-height CSS */}
                     <GlassCard className="h-100 project-card">
                       <Card.Body className="d-flex flex-column">
                         <Card.Title>{p.title}</Card.Title>
                         <Card.Text className="text-muted small card-summary">{p.shortDescription}</Card.Text>
 
-                        {/* actions pinned to bottom using flex layout */}
                         <div className="mt-auto d-flex gap-2 card-actions">
                           <Button href={`/projects/${p.slug}`} variant="success" aria-label={`Open case study ${p.title}`}>Case Study</Button>
                           {p.demo && (
@@ -175,7 +228,7 @@ export default function HomePage() {
               <Row className="justify-content-center">
                 <Col lg={8}>
                   <h2 className="mb-3 text-center">Contact</h2>
-                  <p className="text-center text-muted">Tell me about your project — I respond in 24–48 hours.</p>
+                  <p className="text-center text-muted">Tell me about your site, lab or attachment — I usually reply in 24–48 hours.</p>
                   <ContactForm inline />
                 </Col>
               </Row>

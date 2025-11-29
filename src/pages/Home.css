@@ -1,0 +1,90 @@
+/* src/pages/Home.css
+   Styling for HomePage: hero, skills grid, selected work, CTAs and responsive tweaks.
+*/
+
+/* HERO */
+.hero-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.hero-illustration {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  border: 1px solid rgba(2,6,23,0.03);
+}
+
+/* headline styling */
+.gradient-text {
+  background: linear-gradient(90deg, #0f766e, #16a34a 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* section titles */
+.section-title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+/* SKILLS GRID */
+.skill-icon svg {
+  display: block;
+  margin: 0 auto;
+  color: #0f766e;
+}
+
+#skills .text-muted {
+  margin-top: 6px;
+  font-size: 0.88rem;
+}
+
+/* SELECTED WORK & ENGAGEMENTS */
+#projects {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.project-grid {
+  --gap: 1.25rem;
+  gap: var(--gap);
+}
+
+/* spacing for card titles and summary */
+.project-card .card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #0f172a;
+}
+
+.project-card .card-summary {
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+/* center the "See all case studies" CTA and style it */
+#projects .text-center .btn {
+  padding: 0.56rem 1.05rem;
+  border-radius: 10px;
+}
+
+/* CONTACT / CTA area */
+#contact .lead {
+  font-size: 1rem;
+}
+
+/* ensure consistent spacing on small screens */
+@media (max-width: 767px) {
+  .hero-section { padding-top: 2rem; padding-bottom: 2rem; }
+  .gradient-text { font-size: 1.6rem; }
+  .skill-icon svg { width: 44px; height: 44px; }
+}
+
+/* Accessibility helpers */
+a.btn:focus, button:focus {
+  outline: 3px solid rgba(16,185,129,0.12);
+  outline-offset: 3px;
+}
