@@ -23,7 +23,7 @@ import defaultAvatar from '../assets/me.jpg';
 
 // helper for DiceBear fallback avatars
 const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
-  `https://avatars.dicebear.com/api/identicon/${encodeURIComponent(seed)}.svg`;
+  `https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(seed)}&scale=100`;
 
 /**
  * Services & skills now reflect a full ICT professional offering:

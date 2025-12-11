@@ -50,6 +50,69 @@
 .project-grid {
   --gap: 1.25rem;
   gap: var(--gap);
+  /* ensure the grid uses full width and uses flex layout for more predictable behaviour */
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -1);
+  margin-right: calc(var(--gap) * -1);
+}
+
+/* Make bootstrap columns stretch their children (ensures the GlassCard fills the column) */
+.project-grid > .col,
+.project-grid > [class*="col-"] {
+  display: flex;
+  align-items: stretch;
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  box-sizing: border-box;
+}
+
+/* Force 3 equal columns at md+ (explicit widths to avoid layout shifts) */
+@media (min-width: 768px) {
+  .project-grid > .col {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+/* On larger very wide screens, keep consistent behaviour (optional tweak) */
+@media (min-width: 1200px) {
+  .project-grid > .col {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+/* Equal-height project cards — ensure GlassCard/project-card fill available height and actions stay at bottom */
+.project-grid .project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0;               /* remove accidental margins that shrink layout */
+  box-sizing: border-box;  /* ensure padding included in width/height */
+}
+
+/* Make the card body a flexible column (in case GlassCard uses Card markup) */
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  flex: 1 1 auto;
+}
+
+/* Give the summary a consistent minimum height so cards align */
+.project-card .card-summary {
+  min-height: 4rem; /* adjust as needed */
+  overflow: hidden;
+}
+
+/* Keep action buttons pinned at bottom */
+.project-card .card-actions {
+  margin-top: auto;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 /* spacing for card titles and summary */
@@ -58,6 +121,15 @@
   font-weight: 700;
   margin-bottom: 4px;
   color: #0f172a;
+}
+
+/* Optional: truncate long project titles if needed */
+.project-card .project-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3rem;
 }
 
 .project-card .card-summary {
@@ -81,6 +153,17 @@
   .hero-section { padding-top: 2rem; padding-bottom: 2rem; }
   .gradient-text { font-size: 1.6rem; }
   .skill-icon svg { width: 44px; height: 44px; }
+
+  /* On very small screens make sure columns don't get extra spacing that creates white gaps */
+  .project-grid > .col {
+    align-items: stretch;
+    padding-left: calc(var(--gap) / 2);
+    padding-right: calc(var(--gap) / 2);
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .project-card .card-summary { min-height: 3rem; }
 }
 
 /* Accessibility helpers */

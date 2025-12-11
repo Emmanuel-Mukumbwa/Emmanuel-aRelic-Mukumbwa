@@ -17,7 +17,8 @@ import {
   SiNodedotjs,
   SiMysql,
   SiPostman,
-  SiPython
+  SiPython,
+  SiLaravel
 } from 'react-icons/si';
 import {
   FaServer,
@@ -43,6 +44,7 @@ const skillIcons = {
   Security: <FaShieldAlt size={48} />,
   'Kali Linux': <FaLinux size={36} />,
   Python: <SiPython size={36} />,
+  Laravel: <SiLaravel size={36} />,
 
   // retain developer tool icons too (useful for projects & technical credibility)
   React: <SiReact size={36} />,
@@ -61,6 +63,7 @@ const skills = [
   'Security',
   'Kali Linux',
   'Python',
+  'Laravel',
   'Training & Docs',
   'React',
   'NodeJS',
@@ -197,7 +200,7 @@ export default function HomePage() {
                   <Col key={p.id}>
                     <GlassCard className="h-100 project-card">
                       <Card.Body className="d-flex flex-column">
-                        <Card.Title>{p.title}</Card.Title>
+                        <Card.Title className="project-title">{p.title}</Card.Title>
                         <Card.Text className="text-muted small card-summary">{p.shortDescription}</Card.Text>
 
                         <div className="mt-auto d-flex gap-2 card-actions">

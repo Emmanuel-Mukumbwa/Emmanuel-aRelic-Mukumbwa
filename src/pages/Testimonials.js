@@ -9,7 +9,7 @@ import testimonials from '../data/testimonials';
 import './Testimonials.css';
 
 // helper: dicebear identicon fallback
-const getPlaceholder = (seed) => `https://avatars.dicebear.com/api/identicon/${encodeURIComponent(seed)}.svg`;
+const getPlaceholder = (seed) => `https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(seed)}&scale=100`;
 
 export default function Testimonials() {
   const [view, setView] = useState('grid'); // 'grid' | 'carousel'
@@ -111,8 +111,7 @@ export default function Testimonials() {
                           <div className="text-muted small">{t.role}</div>
                           <div className="text-muted small">{t.company}</div>
                           <div className="text-muted small mt-1">Contact available on request</div>
-                          {t.logo && <img src={t.logo} alt={`${t.company} logo`} className="reference-company-logo mt-2" onError={(e) => { e.target.style.display = 'none'; }} />}
-                        </div>
+                         </div>
 
                         <div className="flex-grow-1">
                           {/* Intentionally lightweight: no quotes or ratings */}
@@ -124,7 +123,7 @@ export default function Testimonials() {
               </Card.Body>
             </Card>
           )}
-        </Container>
+        </Container> 
       </main>
     </>
   );

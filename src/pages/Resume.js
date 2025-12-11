@@ -232,11 +232,11 @@ export default function Resume() {
                       Phone: +265 991 113 930
                     </ListGroup.Item>
 
-                    <ListGroup.Item>
+                    {/*<ListGroup.Item>
                       <strong>Mr Donald Phiri</strong><br />
                       Research Project Supervisor — Mzuzu University<br />
                       Phone: +265 992 315 319
-                    </ListGroup.Item>
+                    </ListGroup.Item>*/}
                   </ListGroup>
                 </section>
 
