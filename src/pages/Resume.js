@@ -51,7 +51,7 @@ export default function Resume() {
                 <Row className="mb-4">
                   <Col md={4}>
                     <strong>Location</strong>
-                    <div className="text-muted">Lilongwe / Chitipa, Malawi</div>
+                    <div className="text-muted">Mzuzu / Chitipa, Malawi</div>
                   </Col>
                   <Col md={4}>
                     <strong>Phone</strong>
@@ -187,7 +187,7 @@ export default function Resume() {
                   <Row>
                     <Col md={6}>
                       <strong>BSc — Information & Communication Technology</strong>
-                      <div className="text-muted">Mzuzu University (final year)</div>
+                      <div className="text-muted">Mzuzu University(2022-2025)</div>
                     </Col>
                     <Col md={6}>
                       <strong>Advanced Diploma — Communication & Information Systems</strong>
