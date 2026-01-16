@@ -86,7 +86,7 @@ signal troubleshooting, hands-on installations and preparation of a final techni
       'Final technical report documenting methodology, findings and recommendations'
     ],
     outcome: [
-      'Final report validated by industry supervisor (Mr Hillary Namakhwa)',
+      'Final report validated by industry supervisor and academic coordinator',
       'Improved site checklist and handover documentation',
       'Demonstrated practical competency in communications diagnostics and reporting'
     ],
