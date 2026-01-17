@@ -7,7 +7,6 @@ import {
 import {
   FaCheckCircle,
   FaDownload,
-  FaStar,
   FaNetworkWired,
   FaServer,
   FaTools,
@@ -19,7 +18,6 @@ import './About.css';
 import ContactForm from '../components/ContactForm';
 import testimonials from '../data/testimonials';
 import heroIllustration from '../assets/me.jpg';
-import defaultAvatar from '../assets/me.jpg';
 
 // helper for DiceBear fallback avatars
 const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
