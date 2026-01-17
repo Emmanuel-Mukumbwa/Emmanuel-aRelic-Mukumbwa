@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AnimatedSection from '../AnimatedSection';
-import GlassCard from '../GlassCard';
 import ReactGA from 'react-ga4';
 import projects from '../data/projects';
 import ContactForm from '../components/ContactForm';
@@ -172,7 +171,7 @@ export default function HomePage() {
               <Row className="row-cols-1 row-cols-md-3 g-4 project-grid">
                 {projects.slice(0, 4).map((p) => (
                   <Col key={p.id}>
-                    <GlassCard className="h-100 project-card">
+                    <Card className="h-100 project-card">
                       <Card.Body className="d-flex flex-column">
                         <Card.Title className="project-title">{p.title}</Card.Title>
                         <Card.Text className="text-muted small card-summary">{p.shortDescription}</Card.Text>
@@ -194,7 +193,7 @@ export default function HomePage() {
                           )}
                         </div>
                       </Card.Body>
-                    </GlassCard>
+                    </Card>
                   </Col>
                 ))}
               </Row>

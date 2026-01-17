@@ -47,53 +47,53 @@
   padding-bottom: 2rem;
 }
 
+/* ---------- Projects: responsive grid that fills available horizontal space ---------- */
+/* Use CSS Grid with a larger minimum column to avoid very skinny cards on wide screens.
+   This balances: mobile (1 col), tablet (2 cols), laptop (3 cols), large desktop (3-4 cols). */
 .project-grid {
-  --gap: 1.25rem;
-  gap: var(--gap);
-  /* ensure the grid uses full width and uses flex layout for more predictable behaviour */
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: calc(var(--gap) * -1);
-  margin-right: calc(var(--gap) * -1);
+  display: grid;
+  /* Increase the minimum so cards are wider before wrapping */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;           /* tighter max to avoid huge white margins on mid-large screens */
+  box-sizing: border-box;
+  padding: 0 1rem;             /* a little horizontal breathing room */
+  justify-items: stretch;      /* make each grid cell fill available column width */
 }
 
-/* Make bootstrap columns stretch their children (ensures the GlassCard fills the column) */
+/* If you want slightly larger cards on ultra-wide screens, bump min-width at very large widths */
+@media (min-width: 1600px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.5rem;
+    max-width: 1600px;
+    padding: 0 2rem;
+  }
+}
+
+/* Ensure Bootstrap .col wrappers behave (if using Row/Col markup) and let inner Card stretch */
 .project-grid > .col,
 .project-grid > [class*="col-"] {
   display: flex;
   align-items: stretch;
-  padding-left: var(--gap);
-  padding-right: var(--gap);
+  padding: 0;    /* Grid gap handles spacing */
   box-sizing: border-box;
+  width: 100%;
 }
 
-/* Force 3 equal columns at md+ (explicit widths to avoid layout shifts) */
-@media (min-width: 768px) {
-  .project-grid > .col {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-  }
-}
-
-/* On larger very wide screens, keep consistent behaviour (optional tweak) */
-@media (min-width: 1200px) {
-  .project-grid > .col {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-  }
-}
-
-/* Equal-height project cards — ensure GlassCard/project-card fill available height and actions stay at bottom */
+/* Card fills column and keeps equal-height behavior */
 .project-grid .project-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  margin: 0;               /* remove accidental margins that shrink layout */
-  box-sizing: border-box;  /* ensure padding included in width/height */
+  margin: 0;
+  box-sizing: border-box;
 }
 
-/* Make the card body a flexible column (in case GlassCard uses Card markup) */
+/* Keep the card-body as a flexible column so actions stay pinned to the bottom */
 .project-card .card-body {
   display: flex;
   flex-direction: column;
@@ -102,13 +102,13 @@
   flex: 1 1 auto;
 }
 
-/* Give the summary a consistent minimum height so cards align */
+/* Adjusted summary height to avoid overly long cards but still keep alignment */
 .project-card .card-summary {
-  min-height: 4rem; /* adjust as needed */
+  min-height: 3.5rem;
   overflow: hidden;
 }
 
-/* Keep action buttons pinned at bottom */
+/* action buttons pinned at bottom */
 .project-card .card-actions {
   margin-top: auto;
   justify-content: flex-start;
@@ -154,16 +154,19 @@
   .gradient-text { font-size: 1.6rem; }
   .skill-icon svg { width: 44px; height: 44px; }
 
-  /* On very small screens make sure columns don't get extra spacing that creates white gaps */
-  .project-grid > .col {
-    align-items: stretch;
-    padding-left: calc(var(--gap) / 2);
-    padding-right: calc(var(--gap) / 2);
-    flex: 0 0 100%;
-    max-width: 100%;
+  .project-card .card-summary { min-height: 3rem; }
+}
+
+/* Slight tweak for very small screens (force single column) */
+@media (max-width: 575px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
   }
 
-  .project-card .card-summary { min-height: 3rem; }
+  .project-card .card-summary {
+    min-height: 3rem;
+  }
 }
 
 /* Accessibility helpers */
