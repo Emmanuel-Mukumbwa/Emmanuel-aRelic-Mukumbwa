@@ -38,6 +38,7 @@ export default function Resume() {
                     <Button
                       variant="success"
                       href={downloadPath}
+                      download={downloadName}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="me-2"
