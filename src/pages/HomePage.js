@@ -9,10 +9,6 @@ import projects from '../data/projects';
 import ContactForm from '../components/ContactForm';
 import {
   SiReact,
-  SiBootstrap,
-  SiJavascript,
-  SiHtml5,
-  SiCss3,
   SiGit,
   SiNodedotjs,
   SiMysql,
@@ -31,7 +27,7 @@ import {
 } from 'react-icons/fa';
 import './Home.css';
 
-// hero image (local asset) — fallback to DiceBear identicon if missing
+// hero image (local asset)
 import heroImg from '../assets/me.jpg';
 
 // Icons map — a mix of development and broader ICT icons
@@ -45,8 +41,6 @@ const skillIcons = {
   'Kali Linux': <FaLinux size={36} />,
   Python: <SiPython size={36} />,
   Laravel: <SiLaravel size={36} />,
-
-  // retain developer tool icons too (useful for projects & technical credibility)
   React: <SiReact size={36} />,
   NodeJS: <SiNodedotjs size={36} />,
   MySQL: <SiMysql size={36} />,
@@ -84,8 +78,6 @@ export default function HomePage() {
         ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
       }
     } catch (err) {
-      // non-fatal; don't break the page if GA isn't configured
-      // eslint-disable-next-line no-console
       console.warn('ReactGA send failed', err);
     }
   }, []);
@@ -109,7 +101,6 @@ export default function HomePage() {
                 <Col md={7}>
                   <h1 className="display-4 gradient-text mb-3">Emmanuel (aRelic) Mukumbwa</h1>
 
-                  {/* Reframed headline for ICT professional */}
                   <h2 className="h5 text-muted mb-3">
                     Systems, networks and communications — practical ICT solutions for campuses, NGOs and small businesses.
                   </h2>
@@ -118,41 +109,24 @@ export default function HomePage() {
                   </p>
 
                   <div className="d-flex gap-3 mt-4">
-                    {/* Primary CTA - goes to about page with services */}
-                     <Button
-                      href="/about"
-                      variant="success"
-                      aria-label="About Emmanuel"
-                    >
+                    <Button href="/about" variant="success" aria-label="About Emmanuel">
                       About Emmanuel
                     </Button>
-                    <Button
-                      href="/contact?subject=Request%20a%20quote"
-                      variant="success"
-                      aria-label="Request a quote"
-                    >
+                    <Button href="/contact?subject=Request%20a%20quote" variant="success" aria-label="Request a quote">
                       Request a quote
                     </Button>
-
-                    {/* Secondary CTA - view resume */}
-                    <Button
-                      href="/resume"
-                      variant="outline-success"
-                      aria-label="View resume"
-                    >
+                    <Button href="/resume" variant="outline-success" aria-label="View resume">
                       View CV
                     </Button>
                   </div>
 
-                  {/* quick proof / stats emphasising ICT work */}
                   <div className="mt-4 text-muted small">
                     <strong>Systems deployed</strong> • <strong>Industrial attachments supervised</strong> • <strong>Workshops run</strong>
                   </div>
                 </Col>
 
-                {/* HERO ILLUSTRATION */}
+                {/* HERO IMAGE */}
                 <Col md={5} className="text-center mt-4 mt-md-0">
-                  {/* If heroImg fails to resolve, fallback to generated identicon (DiceBear) */}
                   <img
                     src={heroImg}
                     alt="Portrait of Emmanuel (aRelic) Mukumbwa"
@@ -186,7 +160,7 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* PROJECTS / ENGAGEMENTS — equal height cards */}
+        {/* PROJECTS */}
         <section id="projects" className="py-5">
           <Container>
             <AnimatedSection>
@@ -196,7 +170,7 @@ export default function HomePage() {
               </p>
 
               <Row className="row-cols-1 row-cols-md-3 g-4 project-grid">
-                {projects.slice(0, 4).map(p => (
+                {projects.slice(0, 4).map((p) => (
                   <Col key={p.id}>
                     <GlassCard className="h-100 project-card">
                       <Card.Body className="d-flex flex-column">
@@ -204,9 +178,17 @@ export default function HomePage() {
                         <Card.Text className="text-muted small card-summary">{p.shortDescription}</Card.Text>
 
                         <div className="mt-auto d-flex gap-2 card-actions">
-                          <Button href={`/projects/${p.slug}`} variant="success" aria-label={`Open case study ${p.title}`}>Case Study</Button>
+                          <Button href={`/projects/${p.slug}`} variant="success" aria-label={`Open case study ${p.title}`}>
+                            Case Study
+                          </Button>
                           {p.demo && (
-                            <Button href={p.demo} variant="outline-secondary" target="_blank" rel="noopener noreferrer" aria-label={`Open live demo ${p.title}`}>
+                            <Button
+                              href={p.demo}
+                              variant="outline-secondary"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Open live demo ${p.title}`}
+                            >
                               Live
                             </Button>
                           )}
@@ -218,7 +200,9 @@ export default function HomePage() {
               </Row>
 
               <div className="text-center mt-4">
-                <Button href="/projects" variant="outline-success">See all case studies</Button>
+                <Button href="/projects" variant="outline-success">
+                  See all case studies
+                </Button>
               </div>
             </AnimatedSection>
           </Container>
@@ -231,7 +215,9 @@ export default function HomePage() {
               <Row className="justify-content-center">
                 <Col lg={8}>
                   <h2 className="mb-3 text-center">Contact</h2>
-                  <p className="text-center text-muted">Tell me about your site, lab or attachment — I usually reply in 24–48 hours.</p>
+                  <p className="text-center text-muted">
+                    Tell me about your site, lab or attachment — I usually reply in 24–48 hours.
+                  </p>
                   <ContactForm inline />
                 </Col>
               </Row>
