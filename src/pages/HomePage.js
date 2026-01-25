@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AnimatedSection from '../AnimatedSection';
 import ReactGA from 'react-ga4';
-import projects from '../data/projects';
+import projects from '..//data/projects';
 import ContactForm from '../components/ContactForm';
 import {
   SiReact,
@@ -26,10 +26,8 @@ import {
 } from 'react-icons/fa';
 import './Home.css';
 
-// hero image (local asset)
+// hero image (local asset) — fallback to DiceBear identicon if missing
 import heroImg from '../assets/me.jpg';
-// small portrait thumbnail to overlay above artwork
-import metaImg from '../assets/emmanuel.jpg';
 
 // Icons map — a mix of development and broader ICT icons
 const skillIcons = {
@@ -126,33 +124,19 @@ export default function HomePage() {
                   </div>
                 </Col>
 
-                {/* HERO IMAGE (artwork + top portrait) */}
+                {/* HERO ILLUSTRATION */}
                 <Col md={5} className="text-center mt-4 mt-md-0">
-                  <div className="hero-illustration-wrapper centered-avatar" aria-hidden={false}>
-                    {/* circular portrait on top */}
-                    <img
-                      src={metaImg}
-                      alt="Emmanuel Mukumbwa — portrait"
-                      className="hero-avatar hero-avatar--circle hero-avatar--top"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Thumb');
-                      }}
-                    />
-
-                    {/* main artwork below */}
-                    <img
-                      src={heroImg}
-                      alt="Artwork — aRelic Designs"
-                      className="hero-illustration-main img-fluid"
-                      style={{ maxHeight: 360 }}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Mukumbwa');
-                      }}
-                    />
-                  </div>
+                  {/* If heroImg fails to resolve, fallback to generated identicon (DiceBear) */}
+                  <img
+                    src={heroImg}
+                    alt="Portrait of Emmanuel (aRelic) Mukumbwa"
+                    className="hero-illustration img-fluid"
+                    style={{ maxHeight: 360 }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Mukumbwa');
+                    }}
+                  />
                 </Col>
               </Row>
             </AnimatedSection>
