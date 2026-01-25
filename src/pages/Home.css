@@ -29,7 +29,128 @@
   color: #0f172a;
 }
 
-/* SKILLS GRID */
+/* ---------- HERO: artwork wrapper and centered avatar ---------- */
+.hero-illustration-wrapper {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  max-width: 440px; /* slightly wider container for larger avatar balance */
+  margin-top: 30px; /* pushes artwork down slightly */
+}
+
+/* main artwork */
+.hero-illustration-main {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  border: 1px solid rgba(2,6,23,0.03);
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 70px; /* add vertical space below the avatar */
+}
+
+/* centered circular portrait above artwork */
+.hero-avatar {
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 168px; /* slightly larger than before */
+  height: 168px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  box-shadow: 0 12px 32px rgba(2,6,23,0.18);
+  background: #fff;
+  z-index: 3;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hero-avatar:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.22);
+}
+
+/* top padding to offset overlap visually */
+.centered-avatar {
+  padding-top: 110px;
+}
+
+/* optional shape variants */
+.hero-avatar--rounded {
+  border-radius: 20px;
+}
+
+.hero-avatar--hex {
+  clip-path: polygon(
+    25% 5%,
+    75% 5%,
+    100% 50%,
+    75% 95%,
+    25% 95%,
+    0% 50%
+  );
+  -webkit-clip-path: polygon(
+    25% 5%,
+    75% 5%,
+    100% 50%,
+    75% 95%,
+    25% 95%,
+    0% 50%
+  );
+  border: none;
+}
+
+/* ---------- Responsive adjustments ---------- */
+
+/* Tablets and small laptops */
+@media (max-width: 991px) {
+  .hero-avatar {
+    top: -75px;
+    width: 140px;
+    height: 140px;
+  }
+  .hero-illustration-main {
+    margin-top: 60px;
+  }
+  .centered-avatar {
+    padding-top: 90px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 767px) {
+  .hero-avatar {
+    top: -65px;
+    width: 120px;
+    height: 120px;
+  }
+  .hero-illustration-main {
+    margin-top: 55px;
+  }
+  .centered-avatar {
+    padding-top: 85px;
+  }
+}
+
+/* Extra small devices (phones under 480px) */
+@media (max-width: 480px) {
+  .hero-avatar {
+    top: -55px;
+    width: 100px;
+    height: 100px;
+  }
+  .hero-illustration-main {
+    margin-top: 50px;
+  }
+  .centered-avatar {
+    padding-top: 75px;
+  }
+}
+
+/* ---------- SKILLS GRID ---------- */
 .skill-icon svg {
   display: block;
   margin: 0 auto;
@@ -41,29 +162,25 @@
   font-size: 0.88rem;
 }
 
-/* SELECTED WORK & ENGAGEMENTS */
+/* ---------- SELECTED WORK & ENGAGEMENTS ---------- */
 #projects {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-/* ---------- Projects: responsive grid that fills available horizontal space ---------- */
-/* Use CSS Grid with a larger minimum column to avoid very skinny cards on wide screens.
-   This balances: mobile (1 col), tablet (2 cols), laptop (3 cols), large desktop (3-4 cols). */
+/* Responsive project grid */
 .project-grid {
   display: grid;
-  /* Increase the minimum so cards are wider before wrapping */
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 1.25rem;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;           /* tighter max to avoid huge white margins on mid-large screens */
+  max-width: 1200px;
   box-sizing: border-box;
-  padding: 0 1rem;             /* a little horizontal breathing room */
-  justify-items: stretch;      /* make each grid cell fill available column width */
+  padding: 0 1rem;
+  justify-items: stretch;
 }
 
-/* If you want slightly larger cards on ultra-wide screens, bump min-width at very large widths */
 @media (min-width: 1600px) {
   .project-grid {
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -73,17 +190,15 @@
   }
 }
 
-/* Ensure Bootstrap .col wrappers behave (if using Row/Col markup) and let inner Card stretch */
 .project-grid > .col,
 .project-grid > [class*="col-"] {
   display: flex;
   align-items: stretch;
-  padding: 0;    /* Grid gap handles spacing */
+  padding: 0;
   box-sizing: border-box;
   width: 100%;
 }
 
-/* Card fills column and keeps equal-height behavior */
 .project-grid .project-card {
   display: flex;
   flex-direction: column;
@@ -93,7 +208,6 @@
   box-sizing: border-box;
 }
 
-/* Keep the card-body as a flexible column so actions stay pinned to the bottom */
 .project-card .card-body {
   display: flex;
   flex-direction: column;
@@ -102,20 +216,17 @@
   flex: 1 1 auto;
 }
 
-/* Adjusted summary height to avoid overly long cards but still keep alignment */
 .project-card .card-summary {
   min-height: 3.5rem;
   overflow: hidden;
 }
 
-/* action buttons pinned at bottom */
 .project-card .card-actions {
   margin-top: auto;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 
-/* spacing for card titles and summary */
 .project-card .card-title {
   font-size: 1rem;
   font-weight: 700;
@@ -123,7 +234,6 @@
   color: #0f172a;
 }
 
-/* Optional: truncate long project titles if needed */
 .project-card .project-title {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -137,27 +247,25 @@
   font-size: 0.9rem;
 }
 
-/* center the "See all case studies" CTA and style it */
 #projects .text-center .btn {
   padding: 0.56rem 1.05rem;
   border-radius: 10px;
 }
 
-/* CONTACT / CTA area */
+/* ---------- CONTACT / CTA area ---------- */
 #contact .lead {
   font-size: 1rem;
 }
 
-/* ensure consistent spacing on small screens */
+/* ---------- Responsive tweaks ---------- */
 @media (max-width: 767px) {
   .hero-section { padding-top: 2rem; padding-bottom: 2rem; }
   .gradient-text { font-size: 1.6rem; }
   .skill-icon svg { width: 44px; height: 44px; }
-
   .project-card .card-summary { min-height: 3rem; }
 }
 
-/* Slight tweak for very small screens (force single column) */
+/* Force single column on very small screens */
 @media (max-width: 575px) {
   .project-grid {
     grid-template-columns: 1fr;
@@ -169,7 +277,7 @@
   }
 }
 
-/* Accessibility helpers */
+/* ---------- Accessibility helpers ---------- */
 a.btn:focus, button:focus {
   outline: 3px solid rgba(16,185,129,0.12);
   outline-offset: 3px;
