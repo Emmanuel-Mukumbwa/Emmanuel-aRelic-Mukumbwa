@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AnimatedSection from '../AnimatedSection';
 import ReactGA from 'react-ga4';
-import projects from '..//data/projects';
+import projects from '../data/projects';
 import ContactForm from '../components/ContactForm';
 import {
   SiReact,
@@ -26,8 +26,10 @@ import {
 } from 'react-icons/fa';
 import './Home.css';
 
-// hero image (local asset) — fallback to DiceBear identicon if missing
-import heroImg from '../assets/me.jpg';
+// image imports (exported from Photoshop into src/assets)
+import emmanuel1xJpg from '../assets/emmanuel-800.jpg';
+import emmanuel2xJpg from '../assets/emmanuel-1600.jpg';
+// Optional (only if you export a .webp): import emmanuel2xWebp from '../assets/emmanuel-1600.webp';
 
 // Icons map — a mix of development and broader ICT icons
 const skillIcons = {
@@ -124,19 +126,33 @@ export default function HomePage() {
                   </div>
                 </Col>
 
-                {/* HERO ILLUSTRATION */}
+                {/* HERO PORTRAIT (circular, responsive, uses srcset for crisp 2x on HiDPI) */}
                 <Col md={5} className="text-center mt-4 mt-md-0">
-                  {/* If heroImg fails to resolve, fallback to generated identicon (DiceBear) */}
-                  <img
-                    src={heroImg}
-                    alt="Portrait of Emmanuel (aRelic) Mukumbwa"
-                    className="hero-illustration img-fluid"
-                    style={{ maxHeight: 360 }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Mukumbwa');
-                    }}
-                  />
+                  <div className="hero-circle" aria-hidden={false}>
+                    <picture>
+                      {/* Optional WebP source (uncomment if you export webp and import it above) */}
+                      {/*
+                      <source
+                        type="image/webp"
+                        srcSet={`${emmanuel2xWebp} 2x, ${emmanuel2xWebp} 1x`}
+                        sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
+                      />
+                      */}
+                      <img
+                        src={emmanuel1xJpg}
+                        srcSet={`${emmanuel1xJpg} 1x, ${emmanuel2xJpg} 2x`}
+                        sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
+                        alt="Emmanuel (aRelic) Mukumbwa — portrait"
+                        className="hero-circle-img"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = getPlaceholderAvatar('Emmanuel-aRelic-Mukumbwa');
+                        }}
+                      />
+                    </picture>
+                  </div>
                 </Col>
               </Row>
             </AnimatedSection>
