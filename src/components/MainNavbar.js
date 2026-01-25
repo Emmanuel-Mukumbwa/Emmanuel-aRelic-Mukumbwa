@@ -1,8 +1,7 @@
-//scr/components/MainNavbar.js
 import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaCog } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaBars } from 'react-icons/fa';
 import './MainNavbar.css';
 
 export default function MainNavbar() {
@@ -15,8 +14,10 @@ export default function MainNavbar() {
           <span className="brand-name">aRelic</span>
         </Navbar.Brand>
 
+        {/* Toggle: replaced gear with hamburger (FaBars) */}
         <Navbar.Toggle aria-controls="main-nav" className="custom-toggler" title="Toggle navigation">
-          <FaCog size={20} color="#D6EFFF" />
+          <FaBars size={20} aria-hidden="true" />
+          <span className="visually-hidden">Toggle navigation</span>
         </Navbar.Toggle>
 
         <Navbar.Collapse id="main-nav">

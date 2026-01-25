@@ -1,4 +1,3 @@
-/*src/components/MainNavbar.css/*
 /* Minimal styles to match your theme and avoid the previous missing CSS error.
    You can extend/tweak these or fold them into your existing custom.scss. */
 
@@ -29,12 +28,35 @@
   color: #56B3FA !important;
 }
 
+/* custom toggler */
 .custom-toggler {
   border: 0;
   background: transparent;
   padding: 0.25rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* style the hamburger icon inside the toggler */
+.custom-toggler svg {
+  color: #D6EFFF;
+  display: block;
+}
+
+/* increase touch target slightly */
+.custom-toggler {
+  border-radius: 6px;
+}
+
+/* visible hover and focus states for accessibility */
+.custom-toggler:hover,
+.custom-toggler:focus {
+  background: rgba(214,239,255,0.03);
+  outline: none;
+}
+
+/* Social icons */
 .social-icons .social-link {
   color: #D6EFFF;
   margin-right: 0.5rem;
@@ -59,8 +81,18 @@
   color: #fff;
 }
 
-/* Make sure small screens have a compact header */
+/* Make sure small screens have a compact header and show hamburger */
 @media (max-width: 767px) {
   .social-icons { display: none; }
   .navbar-custom .brand-name { font-size: 1.1rem; }
+  /* make the toggler more prominent on small screens */
+  .custom-toggler svg { font-size: 20px; }
+}
+
+/* tweak collapsed nav links spacing for small screens (optional) */
+@media (max-width: 991px) {
+  .navbar-custom .nav-link {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
