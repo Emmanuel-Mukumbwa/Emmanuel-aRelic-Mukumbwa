@@ -17,12 +17,6 @@ export default function MainNavbar() {
     setExpanded(false);
   }, [location]);
 
-  // helper to navigate and close the menu
-  const navigateAndClose = (to) => {
-    setExpanded(false);
-    navigate(to);
-  };
-
   return (
     <Navbar
       expanded={expanded}
