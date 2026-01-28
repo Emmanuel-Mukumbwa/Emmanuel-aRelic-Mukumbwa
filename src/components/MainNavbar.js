@@ -67,16 +67,6 @@ export default function MainNavbar() {
                 <FaGithub />
               </a>
               <a
-                href="https://github.com/Emmanuel-Mukumbwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="social-link"
-                title="GitHub"
-              >
-                <FaGithub />
-              </a>
-              <a
                 href="https://linkedin.com/in/emmanuel-mukumbwa"
                 target="_blank"
                 rel="noopener noreferrer"
