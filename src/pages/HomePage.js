@@ -103,10 +103,10 @@ export default function HomePage() {
                   <h1 className="display-4 gradient-text mb-3">Emmanuel (aRelic) Mukumbwa</h1>
 
                   <h2 className="h5 text-muted mb-3">
-                    Systems, networks and communications — practical ICT solutions for campuses, NGOs and small businesses.
+                    Systems, networks, and ICT solutions — reliable, scalable, and built for real-world environments.
                   </h2>
                   <p className="lead text-muted">
-                    I design, deploy and document reliable, maintainable ICT systems — from site attachments and network checks to integrations and training. Practical, local-first solutions that staff can run and students can learn from.
+                    I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. From site assessments and network rollouts to integrations and hands-on training, my focus is on practical, local-first solutions that teams can manage and students can learn from.
                   </p>
 
                   <div className="d-flex gap-3 mt-4">
@@ -122,7 +122,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="mt-4 text-muted small">
-                    <strong>Systems deployed</strong> • <strong>Industrial attachments supervised</strong> • <strong>Workshops run</strong>
+                    <strong>Systems deployed</strong> • <strong>Attachments supervised</strong> • <strong>Workshops delivered</strong>
                   </div>
                 </Col>
 
