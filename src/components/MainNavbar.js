@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaBars } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
 import './MainNavbar.css';
 
 export default function MainNavbar() {
@@ -67,7 +67,17 @@ export default function MainNavbar() {
                 <FaGithub />
               </a>
               <a
-                href="https://www.linkedin.com/in/yourprofile"
+                href="https://github.com/Emmanuel-Mukumbwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="social-link"
+                title="GitHub"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://linkedin.com/in/emmanuel-mukumbwa"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -75,26 +85,6 @@ export default function MainNavbar() {
                 title="LinkedIn"
               >
                 <FaLinkedin />
-              </a>
-              <a
-                href="https://www.instagram.com/yourprofile"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="social-link"
-                title="Instagram"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://wa.me/265XXXXXXXXX"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="social-link"
-                title="WhatsApp"
-              >
-                <FaWhatsapp />
               </a>
             </div>
 
