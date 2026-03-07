@@ -55,7 +55,12 @@ export default function Resume() {
                 <section className="mb-4">
                   <h5>Professional Summary</h5>
                   <p className="text-muted">
-                    CCNA-certified Network Administrator and Full-Stack Developer with a Bachelor of Science in Information & Communication Technology and 2+ years of practical ICT experience across teaching, freelance development, and industrial attachment. Proven ability to deliver hands-on user support, maintain servers and networks, perform basic cybersecurity tasks, and deploy production web platforms. Reliable, user-focused and able to work across infrastructure and application stacks.
+                    IT professional with CCNA-level networking knowledge and Full-Stack Developer with a Bachelor of Science 
+                    in Information & Communication Technology and 2+ years of practical ICT experience across 
+                    teaching, freelance development, and industrial attachment. Proven ability to deliver 
+                    hands-on user support, maintain servers and networks, perform basic cybersecurity tasks, 
+                    and deploy production web platforms. Reliable, user-focused and able to work across 
+                    infrastructure and application stacks.
                   </p>
                 </section>
 
