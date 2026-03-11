@@ -17,7 +17,9 @@ import {
 import './About.css';
 import ContactForm from '../components/ContactForm';
 import testimonials from '../data/testimonials';
-import heroIllustration from '../assets/me.jpg';
+// Portrait images (1x and 2x) — kept small for faster load and crisp on HiDPI screens
+import emmanuel1xJpg from '../assets/emmanuel-800.jpg';
+import emmanuel2xJpg from '../assets/emmanuel-1600.jpg';
 
 // helper for DiceBear fallback avatars
 const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
@@ -162,7 +164,7 @@ export default function About() {
               <h1 className="mb-2">Practical ICT solutions — systems, networks, training and reporting.</h1>
 
               <p className="lead text-muted">
-                I’m Emmanuel (aRelic), a CCNA-certified network administrator and full-stack developer with a BSc in ICT. I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. From site assessments and network rollouts to payment integrations and hands-on training, I deliver local-first solutions teams can run and students can learn from.
+                I’m Emmanuel (aRelic), an IT professional with CCNA-level networking knowledge and full-stack developer with a BSc in ICT. I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. From site assessments and network rollouts to payment integrations and hands-on training, I deliver local-first solutions teams can run and students can learn from.
               </p>
 
               <p className="text-muted small">
@@ -193,16 +195,23 @@ export default function About() {
             </Col>
 
             <Col lg={5} className="text-center mt-4 mt-lg-0">
-              <Image
-                src={heroIllustration}
-                alt="Emmanuel Mukumbwa — ICT consultant, Chitipa, Malawi"
-                className="about-portrait hero-illustration"
-                fluid
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = getPlaceholder('Emmanuel-aRelic');
-                }}
-              />
+              <div className="hero-circle" aria-hidden={false}>
+                <picture>
+                  <img
+                    src={emmanuel1xJpg}
+                    srcSet={`${emmanuel1xJpg} 1x, ${emmanuel2xJpg} 2x`}
+                    sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
+                    alt="Emmanuel Mukumbwa — ICT consultant, Chitipa, Malawi"
+                    className="hero-circle-img about-portrait hero-illustration"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = getPlaceholder('Emmanuel-aRelic');
+                    }}
+                  />
+                </picture>
+              </div>
             </Col>
           </Row>
 
