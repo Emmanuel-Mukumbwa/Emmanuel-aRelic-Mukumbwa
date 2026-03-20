@@ -28,8 +28,8 @@ admin moderation, support tickets, and a custom download system with progress fe
       'Demonstrates full‑stack capabilities including file uploads, auth, and complex relational queries',
       'Ready for pilot with real artists and fans'
     ],
-    demo: 'https://backyard-beats.vercel.app/',
-    repo: 'https://github.com/Emmanuel-Mukumbwa/backyard-beats',
+    demo: 'https://backyardbeats.vercel.app/',
+    repo: 'https://github.com/Emmanuel-Mukumbwa/backyardbeats',
     category: 'Platform'
   },
   {
