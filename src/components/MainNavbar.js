@@ -1,4 +1,3 @@
-// src/components/MainNavbar.js
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
@@ -8,14 +7,14 @@ import './MainNavbar.css';
 export default function MainNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // control expanded state so we can close the collapse programmatically
   const [expanded, setExpanded] = useState(false);
 
-  // Close the navbar when the route changes (covers browser nav and programmatic navigate)
+  // Close navbar when route changes (ensures mobile menu closes after navigation)
   useEffect(() => {
     setExpanded(false);
   }, [location]);
+
+  const handleLinkClick = () => setExpanded(false);
 
   return (
     <Navbar
@@ -28,41 +27,60 @@ export default function MainNavbar() {
       collapseOnSelect
     >
       <Container>
-        <Navbar.Brand as={NavLink} to="/" className="brand" aria-label="aRelic home">
+        <Navbar.Brand as={NavLink} to="/" className="brand" onClick={handleLinkClick}>
           <span className="brand-name">aRelic</span>
         </Navbar.Brand>
 
-        {/* Toggle: hamburger icon */}
-        <Navbar.Toggle aria-controls="main-nav" className="custom-toggler" title="Toggle navigation">
+        <Navbar.Toggle aria-controls="main-nav" className="custom-toggler">
           <FaBars size={20} aria-hidden="true" />
           <span className="visually-hidden">Toggle navigation</span>
         </Navbar.Toggle>
 
         <Navbar.Collapse id="main-nav">
           <Nav className="me-auto">
-            <Nav.Link as={NavLink} to="/" end onClick={() => setExpanded(false)}>
+            <Nav.Link
+              as={NavLink}
+              to="/"
+              end
+              onClick={handleLinkClick}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/about" onClick={() => setExpanded(false)}>
+            <Nav.Link
+              as={NavLink}
+              to="/about"
+              onClick={handleLinkClick}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
               About
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/projects" onClick={() => setExpanded(false)}>
+            <Nav.Link
+              as={NavLink}
+              to="/projects"
+              onClick={handleLinkClick}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
               Projects
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/contact" onClick={() => setExpanded(false)}>
+            <Nav.Link
+              as={NavLink}
+              to="/contact"
+              onClick={handleLinkClick}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
               Contact
             </Nav.Link>
           </Nav>
 
           <div className="d-flex align-items-center gap-2">
-            <div className="social-icons d-none d-md-flex" aria-hidden="false">
+            <div className="social-icons d-none d-md-flex">
               <a
                 href="https://github.com/Emmanuel-Mukumbwa"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 className="social-link"
-                title="GitHub"
               >
                 <FaGithub />
               </a>
@@ -72,7 +90,6 @@ export default function MainNavbar() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="social-link"
-                title="LinkedIn"
               >
                 <FaLinkedin />
               </a>
@@ -81,27 +98,23 @@ export default function MainNavbar() {
             <Button
               variant="outline-light"
               size="sm"
-              className="me-2"
+              className="quote-btn"
               onClick={() => {
-                setExpanded(false);
+                handleLinkClick();
                 navigate('/contact?subject=Request%20a%20quote');
               }}
-              aria-label="Request a quote"
-              title="Request a quote"
             >
               Request Quote
             </Button>
 
-            {/* navigate to resume page (preview + download offered there) */}
             <Button
               variant="success"
               size="sm"
+              className="cv-btn"
               onClick={() => {
-                setExpanded(false);
+                handleLinkClick();
                 navigate('/resume');
               }}
-              aria-label="View CV"
-              title="View CV"
             >
               View CV
             </Button>
@@ -110,4 +123,4 @@ export default function MainNavbar() {
       </Container>
     </Navbar>
   );
-} 
+}
