@@ -1,98 +1,135 @@
-/* Minimal styles to match your theme and avoid the previous missing CSS error.
-   You can extend/tweak these or fold them into your existing custom.scss. */
+/* src/components/MainNavbar.css */
+:root {
+  --navbar-bg: rgba(18, 18, 18, 0.92);
+  --navbar-border: rgba(255, 255, 255, 0.05);
+  --text-light: #f0f4fa;
+  --text-hover: #6caeff;
+  --active-color: #4c9aff;
+}
 
 .navbar-custom {
-  background: rgba(28, 28, 28, 0.9);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  backdrop-filter: blur(6px);
-  padding: 0.5rem 0;
+  background: var(--navbar-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 0.6rem 0;
+  transition: background 0.2s ease;
   z-index: 1030;
 }
 
-.navbar-custom .brand-name {
-  font-family: 'Qontra', sans-serif;
-  color: #D6EFFF;
+.brand-name {
+  font-family: 'Poppins', 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: 0.6px;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
   text-decoration: none;
+  transition: opacity 0.2s;
 }
 
+.brand-name:hover {
+  opacity: 0.85;
+}
+
+/* Nav links */
 .navbar-custom .nav-link {
-  color: #D6EFFF !important;
+  color: var(--text-light) !important;
   font-weight: 500;
-  margin-right: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.2rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.navbar-custom .nav-link:hover {
-  color: #56B3FA !important;
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link:focus {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-hover) !important;
 }
 
-/* custom toggler */
+.navbar-custom .nav-link.active {
+  color: var(--active-color) !important;
+  background: rgba(76, 154, 255, 0.1);
+}
+
+/* Custom toggler (hamburger) */
 .custom-toggler {
   border: 0;
   background: transparent;
-  padding: 0.25rem 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
-/* style the hamburger icon inside the toggler */
 .custom-toggler svg {
-  color: #D6EFFF;
-  display: block;
+  color: var(--text-light);
+  font-size: 1.25rem;
 }
 
-/* increase touch target slightly */
-.custom-toggler {
-  border-radius: 6px;
-}
-
-/* visible hover and focus states for accessibility */
 .custom-toggler:hover,
 .custom-toggler:focus {
-  background: rgba(214,239,255,0.03);
+  background: rgba(255, 255, 255, 0.05);
   outline: none;
 }
 
 /* Social icons */
 .social-icons .social-link {
-  color: #D6EFFF;
-  margin-right: 0.5rem;
+  color: var(--text-light);
+  margin-right: 0.8rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.social-icons .social-link:hover {
-  color: #56B3FA;
+.social-icons .social-link:hover,
+.social-icons .social-link:focus {
+  color: var(--text-hover);
 }
 
 /* Buttons */
 .navbar-custom .btn-outline-light {
-  border-color: rgba(214,239,255,0.12);
-  color: #D6EFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text-light);
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  transition: all 0.2s;
 }
 
 .navbar-custom .btn-outline-light:hover {
-  background: rgba(214,239,255,0.03);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
   color: #fff;
 }
 
-/* Make sure small screens have a compact header and show hamburger */
-@media (max-width: 767px) {
-  .social-icons { display: none; }
-  .navbar-custom .brand-name { font-size: 1.1rem; }
-  /* make the toggler more prominent on small screens */
-  .custom-toggler svg { font-size: 20px; }
+.navbar-custom .btn-success {
+  background-color: #198754;
+  border: none;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  transition: background 0.2s;
 }
 
-/* tweak collapsed nav links spacing for small screens (optional) */
+.navbar-custom .btn-success:hover {
+  background-color: #157347;
+}
+
+/* Responsive adjustments */
 @media (max-width: 991px) {
   .navbar-custom .nav-link {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.6rem 0.5rem;
+  }
+  .social-icons {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .brand-name {
+    font-size: 1.15rem;
+  }
+  .navbar-custom .btn-outline-light,
+  .navbar-custom .btn-success {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
   }
 }
