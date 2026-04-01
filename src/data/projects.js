@@ -151,6 +151,90 @@ signal troubleshooting, hands-on installations and preparation of a final techni
     demo: 'https://password-generator-app-lime.vercel.app/',
     repo: '',
     category: 'Utility'
+  },
+  {
+    id: 6,
+    slug: 'cloudimart-prototype',
+    title: 'Cloudimart – University E-commerce Prototype',
+    shortDescription: 'E-commerce platform for groceries and stationery delivery within Mzuzu University community.',
+    description: `A full-stack e-commerce prototype for Cloudimart Limited, a Malawian startup. 
+Built with Laravel (backend) and Next.js (frontend). Features location‑based checkout restricted to Mzuzu University community 
+using GPS validation, unique order ID generation, and delivery verification workflow.`,
+    heroImage: 'projects/cloudimart.jpg',
+    images: [],
+    tech: ['Laravel', 'Next.js', 'MySQL', 'REST API', 'GPS Geolocation', 'Tailwind CSS'],
+    role: 'Full‑stack developer',
+    features: [
+      'Product catalog with Stationery and Dairy categories',
+      'Shopping cart with real-time updates',
+      'Location‑based checkout using browser geolocation and radius validation',
+      'Unique order ID generation (ORDER-YYYYMMDD-XXXXXX)',
+      'Delivery verification with Order ID and phone number',
+      'Admin dashboard for product and location management'
+    ],
+    outcome: [
+      'Working prototype demonstrating core e-commerce functionality with location restriction',
+      'Ready for pilot testing within Mzuzu University community'
+    ],
+    demo: '', // Add demo URL if available
+    repo: 'https://github.com/Emmanuel-Mukumbwa/cloudimart-university-ecommerce',
+    category: 'E-commerce'
+  },
+  {
+    id: 7,
+    slug: 'everyday-tech',
+    title: 'Everyday Tech – Ecommerce Landing Page',
+    shortDescription: 'Responsive ecommerce landing page with product cards, cart drawer, and checkout.',
+    description: `A modern ecommerce landing page built with React and Bootstrap. 
+Features product listings, modal preview, cart drawer, toast notifications, and a front‑only checkout flow. 
+Uses local product data and React context for cart state.`,
+    heroImage: 'projects/everyday-tech.jpg',
+    images: [],
+    tech: ['React', 'Bootstrap', 'React Context', 'CSS Modules'],
+    role: 'Frontend developer',
+    features: [
+      'Product grid with auto‑rotating image carousels',
+      'Product modal with slideshow and quick add to cart',
+      'Slide‑out cart drawer with item management',
+      'Toast notifications for user actions',
+      'Responsive design for mobile and desktop'
+    ],
+    outcome: [
+      'Clean, reusable component structure',
+      'Fully responsive and accessible',
+      'Ready to connect to a real backend'
+    ],
+    demo: 'https://everyday-tech-store.vercel.app/',
+    repo: 'https://github.com/Emmanuel-Mukumbwa/everyday-tech',
+    category: 'Frontend'
+  },
+  {
+    id: 8,
+    slug: 'food-tourism-malawi',
+    title: 'Malawi Food & Travel',
+    shortDescription: 'Discover Malawi’s culinary delights and travel destinations.',
+    description: `A Next.js website promoting food tourism and travel in Malawi. 
+Features dynamic destination pages with category filtering, a full‑width hero, and responsive design. 
+Built with Next.js, Bootstrap, and custom CSS modules.`,
+    heroImage: 'projects/foodandtravel.jpg',
+    images: [],
+    tech: ['Next.js', 'React', 'Bootstrap', 'CSS Modules', 'TypeScript'],
+    role: 'Frontend developer',
+    features: [
+      'Responsive navigation with hamburger menu',
+      'Hero section with background image overlay and call‑to‑action',
+      'Categorized destination cards (culinary experiences, scenic sites, etc.)',
+      'Filtered destinations page with dynamic query parameters',
+      'About page with mission and contact information'
+    ],
+    outcome: [
+      'Production‑ready tourism website',
+      'Optimized for SEO with server‑side rendering',
+      'Showcases Malawi’s food and travel offerings'
+    ],
+    demo: 'https://malawifoodandtravel.vercel.app/',
+    repo: 'https://github.com/Emmanuel-Mukumbwa/malawifoodandtravel',
+    category: 'Tourism'
   }
 ];
 
