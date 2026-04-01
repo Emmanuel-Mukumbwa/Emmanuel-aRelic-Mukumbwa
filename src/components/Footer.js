@@ -1,25 +1,67 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
-  return (
-    <footer style={{ background: 'rgba(28,28,28,0.9)', color: '#D6EFFF', padding: '2rem 0' }}>
-      <Container className="text-center">
-        <div style={{ marginBottom: '1rem' }}>
-          <a href="https://github.com/Emmanuel-Mukumbwa" target="_blank" rel="noopener noreferrer" style={{ color: '#D6EFFF', marginRight: 16 }}>
-            <FaGithub size={22} />
-          </a>
-          <a href="https://linkedin.com/in/emmanuel-mukumbwa" target="_blank" rel="noopener noreferrer" style={{ color: '#D6EFFF', marginRight: 16 }}>
-            <FaLinkedin size={22} />
-          </a>
-        </div>
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-        <div>
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} aRelic. All rights reserved.</p>
-          <p style={{ margin: 0, fontSize: '0.9rem', color: '#BFDFFF' }}>Built with React, Bootstrap & ❤️ — available for hire</p>
-        </div>
+  return (
+    <footer className="bg-dark text-white py-4 mt-auto">
+      <Container>
+        <Row className="align-items-center text-center text-md-start">
+          <Col md={4} className="mb-3 mb-md-0">
+            <h5 className="mb-0">aRelic</h5>
+            <small className="text-white-50">ICT Professional & Developer</small>
+          </Col>
+          <Col md={4} className="mb-3 mb-md-0">
+            <div className="d-flex justify-content-center gap-3">
+              <a
+                href="https://github.com/Emmanuel-Mukumbwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white-50 hover:text-success transition"
+                aria-label="GitHub"
+              >
+                <FaGithub size={22} />
+              </a>
+              <a
+                href="https://linkedin.com/in/emmanuel-mukumbwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white-50 hover:text-success transition"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={22} />
+              </a>
+            </div>
+          </Col>
+          <Col md={4}>
+            <div className="text-md-end">
+              <button
+                onClick={scrollToTop}
+                className="btn btn-link text-white-50 text-decoration-none p-0 hover:text-success transition"
+                style={{ fontSize: '0.9rem' }}
+              >
+                Back to top ↑
+              </button>
+              <p className="small text-white-50 mt-2 mb-0">
+                &copy; {new Date().getFullYear()} aRelic. All rights reserved.
+              </p>
+            </div>
+          </Col>
+        </Row>
       </Container>
+
+      <style jsx>{`
+        .hover\\:text-success:hover {
+          color: #198754 !important;
+        }
+        .transition {
+          transition: color 0.2s ease;
+        }
+      `}</style>
     </footer>
   );
 }
