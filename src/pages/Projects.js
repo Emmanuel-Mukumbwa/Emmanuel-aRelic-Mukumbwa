@@ -1,23 +1,16 @@
 // src/pages/Projects.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import projects from '../data/projects';
 import './Projects.css';
 
-/**
- * Resolve an asset path:
- * - if absolute or starts with '/', return as-is
- * - try require('../assets/<path>')
- * - fallback to PUBLIC_URL/assets/<path>
- */
 function resolveAsset(path) {
   if (!path) return null;
   if (/^(https?:)?\/\//i.test(path) || path.startsWith('/')) {
     return path;
   }
   try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
     const mod = require(`../assets/${path}`);
     return mod && mod.default ? mod.default : mod;
   } catch (err) {
@@ -25,16 +18,32 @@ function resolveAsset(path) {
   }
 }
 
-// small fallback for thumbnails when image fails
 const fallbackForTitle = (title) =>
   `https://avatars.dicebear.com/api/gridy/${encodeURIComponent(title)}.svg`;
 
 export default function Projects() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 6;
+
+  // Calculate pagination
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
   return (
     <Container className="py-5">
       <h2 className="mb-4">Selected Projects</h2>
       <Row className="g-4">
-        {projects.map(p => {
+        {currentProjects.map(p => {
           const hero = resolveAsset(p.heroImage);
           return (
             <Col md={6} lg={4} key={p.id}>
@@ -85,6 +94,30 @@ export default function Projects() {
           );
         })}
       </Row>
+
+      {totalPages > 1 && (
+        <div className="d-flex justify-content-center mt-5">
+          <Button
+            variant="outline-secondary"
+            onClick={goToPrevPage}
+            disabled={currentPage === 1}
+            className="me-2"
+          >
+            Previous
+          </Button>
+          <span className="align-self-center mx-3">
+            Page {currentPage} of {totalPages}
+          </span>
+          <Button
+            variant="outline-secondary"
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            className="ms-2"
+          >
+            Next
+          </Button>
+        </div>
+      )}
     </Container>
   );
 }
