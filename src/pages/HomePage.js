@@ -1,5 +1,5 @@
 // src/pages/HomePage.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AnimatedSection from '../AnimatedSection';
@@ -8,12 +8,15 @@ import projects from '../data/projects';
 import ContactForm from '../components/ContactForm';
 import {
   SiReact,
-  SiGit,
+  SiNextdotjs,
   SiNodedotjs,
+  SiExpress,
   SiMysql,
-  SiPostman,
+  SiLaravel,
   SiPython,
-  SiLaravel
+  SiGit,
+  SiDocker,
+  SiLinux,
 } from 'react-icons/si';
 import {
   FaServer,
@@ -22,59 +25,81 @@ import {
   FaCogs,
   FaChalkboardTeacher,
   FaShieldAlt,
-  FaLinux
+  FaCode,
+  FaDatabase,
 } from 'react-icons/fa';
 import './Home.css';
 
-// image imports (exported from Photoshop into src/assets)
+// image imports
 import emmanuel1xJpg from '../assets/emmanuel-800.jpg';
 import emmanuel2xJpg from '../assets/emmanuel-1600.jpg';
-// Optional (only if you export a .webp): import emmanuel2xWebp from '../assets/emmanuel-1600.webp';
 
-// Icons map — a mix of development and broader ICT icons
 const skillIcons = {
-  Systems: <FaServer size={48} />,
-  Networking: <FaNetworkWired size={48} />,
-  Infrastructure: <FaTools size={48} />,
-  Integrations: <FaCogs size={48} />,
-  'Training & Docs': <FaChalkboardTeacher size={48} />,
-  Security: <FaShieldAlt size={48} />,
-  'Kali Linux': <FaLinux size={36} />,
-  Python: <SiPython size={36} />,
-  Laravel: <SiLaravel size={36} />,
-  React: <SiReact size={36} />,
-  NodeJS: <SiNodedotjs size={36} />,
-  MySQL: <SiMysql size={36} />,
-  Postman: <SiPostman size={36} />,
-  Git: <SiGit size={36} />
+  'System Administration': <FaServer size={48} />,
+  'Networking': <FaNetworkWired size={48} />,
+  'IT Infrastructure': <FaTools size={48} />,
+  'API Design': <FaCogs size={48} />,
+  'Training & Documentation': <FaChalkboardTeacher size={48} />,
+  'Network Security': <FaShieldAlt size={48} />,
+  'Linux': <SiLinux size={36} />,
+  'Python': <SiPython size={36} />,
+  'Laravel': <SiLaravel size={36} />,
+  'React': <SiReact size={36} />,
+  'Next.js': <SiNextdotjs size={36} />,
+  'Node.js': <SiNodedotjs size={36} />,
+  'Express': <SiExpress size={36} />,
+  'MySQL': <SiMysql size={36} />,
+  'Git': <SiGit size={36} />,
+  'Docker': <SiDocker size={36} />,
+  'REST APIs': <FaCode size={36} />,
+  'Database Design': <FaDatabase size={36} />,
 };
 
-// Skills ordered to display (these keys must match skillIcons where icons are used)
 const skills = [
-  'Systems',
+  'System Administration',
   'Networking',
-  'Infrastructure',
-  'Integrations',
-  'Security',
-  'Kali Linux',
+  'IT Infrastructure',
+  'API Design',
+  'Network Security',
+  'Linux',
   'Python',
   'Laravel',
-  'Training & Docs',
   'React',
-  'NodeJS',
+  'Next.js',
+  'Node.js',
+  'Express',
   'MySQL',
-  'Postman',
-  'Git'
+  'Git',
+  'Docker',
+  'REST APIs',
+  'Database Design',
+  'Training & Documentation',
 ];
 
-// small helper to generate a DiceBear avatar URL for fallbacks
 const getPlaceholderAvatar = (seed = 'arelic') =>
   `https://avatars.dicebear.com/api/identicon/${encodeURIComponent(seed)}.svg`;
 
 export default function HomePage() {
+  const [showAllSkills, setShowAllSkills] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const small = window.innerWidth < 768;
+      setIsSmallScreen(small);
+      // If screen becomes large, reset the toggle state to default (show only 10 if small)
+      if (!small && showAllSkills) {
+        setShowAllSkills(false);
+      }
+    };
+
+    handleResize(); // initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [showAllSkills]);
+
   useEffect(() => {
     try {
-      // safe guard: only send pageview if ReactGA is configured
       if (typeof ReactGA?.send === 'function') {
         ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
       }
@@ -82,6 +107,18 @@ export default function HomePage() {
       console.warn('ReactGA send failed', err);
     }
   }, []);
+
+  const displayedSkills = isSmallScreen && !showAllSkills ? skills.slice(0, 10) : skills;
+  const hasMoreSkills = skills.length > 10;
+
+  const handleToggleSkills = () => {
+    setShowAllSkills(!showAllSkills);
+    // Optional: scroll the skills section into view smoothly
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection && !showAllSkills) {
+      skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <>
@@ -126,18 +163,9 @@ export default function HomePage() {
                   </div>
                 </Col>
 
-                {/* HERO PORTRAIT (circular, responsive, uses srcset for crisp 2x on HiDPI) */}
                 <Col md={5} className="text-center mt-4 mt-md-0">
                   <div className="hero-circle" aria-hidden={false}>
                     <picture>
-                      {/* Optional WebP source (uncomment if you export webp and import it above) */}
-                      {/*
-                      <source
-                        type="image/webp"
-                        srcSet={`${emmanuel2xWebp} 2x, ${emmanuel2xWebp} 1x`}
-                        sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
-                      />
-                      */}
                       <img
                         src={emmanuel1xJpg}
                         srcSet={`${emmanuel1xJpg} 1x, ${emmanuel2xJpg} 2x`}
@@ -165,13 +193,25 @@ export default function HomePage() {
             <AnimatedSection>
               <h2 className="mb-4 text-center section-title">Skills & Tools</h2>
               <Row className="justify-content-center">
-                {skills.map((s, i) => (
+                {displayedSkills.map((s, i) => (
                   <Col key={i} xs={6} md={3} lg={2} className="text-center mb-4">
                     <div className="skill-icon mb-2" aria-hidden>{skillIcons[s]}</div>
                     <div className="text-muted small">{s}</div>
                   </Col>
                 ))}
               </Row>
+              {isSmallScreen && hasMoreSkills && (
+                <div className="text-center mt-3">
+                  <Button
+                    variant="outline-success"
+                    size="sm"
+                    onClick={handleToggleSkills}
+                    aria-label={showAllSkills ? "Show fewer skills" : "Show more skills"}
+                  >
+                    {showAllSkills ? "Show fewer skills" : "Show all skills"}
+                  </Button>
+                </div>
+              )}
             </AnimatedSection>
           </Container>
         </section>
