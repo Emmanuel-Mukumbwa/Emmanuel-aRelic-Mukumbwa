@@ -13,6 +13,7 @@
   transition: transform 220ms ease, box-shadow 220ms ease;
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
   border: 1px solid rgba(15, 23, 42, 0.04);
+  position: relative;
 }
 
 /* subtle lift on hover/focus for keyboard users */
@@ -20,6 +21,29 @@
 .project-card:focus-within {
   transform: translateY(-6px);
   box-shadow: 0 12px 36px rgba(15, 23, 42, 0.10);
+}
+
+/* CASE STUDY overlay badge on hover */
+.project-card::before {
+  content: "CASE STUDY";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 2;
+}
+
+.project-card:hover::before,
+.project-card:focus-within::before {
+  opacity: 1;
 }
 
 /* Thumbnail wrapper (keeps consistent height) */
