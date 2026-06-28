@@ -17,7 +17,11 @@ import {
   SiGit,
   SiDocker,
   SiLinux,
+  SiFlutter,
+  SiDart,
+  SiFirebase,
 } from 'react-icons/si';
+import { FaGoogleDrive } from 'react-icons/fa';   // for Google Sheets icon
 import {
   FaServer,
   FaNetworkWired,
@@ -27,6 +31,7 @@ import {
   FaShieldAlt,
   FaCode,
   FaDatabase,
+  FaMobileAlt,
 } from 'react-icons/fa';
 import './Home.css';
 
@@ -41,6 +46,7 @@ const skillIcons = {
   'API Design': <FaCogs size={48} />,
   'Training & Documentation': <FaChalkboardTeacher size={48} />,
   'Network Security': <FaShieldAlt size={48} />,
+  'Mobile Apps': <FaMobileAlt size={48} />,    // new
   'Linux': <SiLinux size={36} />,
   'Python': <SiPython size={36} />,
   'Laravel': <SiLaravel size={36} />,
@@ -53,6 +59,11 @@ const skillIcons = {
   'Docker': <SiDocker size={36} />,
   'REST APIs': <FaCode size={36} />,
   'Database Design': <FaDatabase size={36} />,
+  'Flutter': <SiFlutter size={36} />,
+  'Dart': <SiDart size={36} />,
+  'Firebase': <SiFirebase size={36} />,
+  'Google Sheets API': <FaGoogleDrive size={36} />,
+  'SQLite (offline)': <FaDatabase size={36} />,
 };
 
 const skills = [
@@ -74,6 +85,12 @@ const skills = [
   'REST APIs',
   'Database Design',
   'Training & Documentation',
+  'Mobile Apps',
+  'Flutter',
+  'Dart',
+  'Firebase',
+  'Google Sheets API',
+  'SQLite (offline)',
 ];
 
 const getPlaceholderAvatar = (seed = 'arelic') =>
@@ -87,13 +104,12 @@ export default function HomePage() {
     const handleResize = () => {
       const small = window.innerWidth < 768;
       setIsSmallScreen(small);
-      // If screen becomes large, reset the toggle state to default (show only 10 if small)
       if (!small && showAllSkills) {
         setShowAllSkills(false);
       }
     };
 
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [showAllSkills]);
@@ -113,7 +129,6 @@ export default function HomePage() {
 
   const handleToggleSkills = () => {
     setShowAllSkills(!showAllSkills);
-    // Optional: scroll the skills section into view smoothly
     const skillsSection = document.getElementById('skills');
     if (skillsSection && !showAllSkills) {
       skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -123,10 +138,10 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>aRelic | ICT Professional</title>
+        <title>aRelic | ICT Professional & Mobile Developer</title>
         <meta
           name="description"
-          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networks, communications, attachments, reporting and training."
+          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networks, mobile apps, attachments, reporting and training. Volunteer ICT expert at YWAM Blantyre."
         />
       </Helmet>
 
@@ -140,11 +155,18 @@ export default function HomePage() {
                   <h1 className="display-4 gradient-text mb-3">Emmanuel (aRelic) Mukumbwa</h1>
 
                   <h2 className="h5 text-muted mb-3">
-                    Systems, networks, and ICT solutions — reliable, scalable, and built for real-world environments.
+                    Systems, networks, mobile apps, and ICT solutions — reliable, scalable, and built for real-world environments.
                   </h2>
                   <p className="lead text-muted">
-                    I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. From site assessments and network rollouts to integrations and hands-on training, my focus is on practical, local-first solutions that teams can manage and students can learn from.
+                    I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses.
+                    From site assessments and network rollouts to mobile app development and hands-on training,
+                    my focus is on practical, local-first solutions that teams can manage and students can learn from.
                   </p>
+
+                  <div className="d-flex gap-2 align-items-center flex-wrap">
+                    <span className="badge bg-success me-2">Volunteer ICT Expert @ YWAM Blantyre</span>
+                    <span className="badge bg-secondary me-2">Offline‑First Finance App</span>
+                  </div>
 
                   <div className="d-flex gap-3 mt-4">
                     <Button href="/about" variant="success" aria-label="About Emmanuel">
@@ -159,7 +181,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="mt-4 text-muted small">
-                    <strong>Systems deployed</strong> • <strong>Attachments supervised</strong> • <strong>Workshops delivered</strong>
+                    <strong>Systems deployed</strong> • <strong>Attachments supervised</strong> • <strong>Workshops delivered</strong> • <strong>Mobile apps built</strong>
                   </div>
                 </Col>
 
@@ -222,7 +244,7 @@ export default function HomePage() {
             <AnimatedSection>
               <h2 className="mb-4 text-center section-title">Selected Work & Engagements</h2>
               <p className="text-center text-muted small mb-4">
-                Case studies and project summaries covering software, systems and field attachments.
+                Case studies and project summaries covering software, systems, field attachments, and mobile apps.
               </p>
 
               <Row className="row-cols-1 row-cols-md-3 g-4 project-grid">
@@ -272,7 +294,7 @@ export default function HomePage() {
                 <Col lg={8}>
                   <h2 className="mb-3 text-center">Contact</h2>
                   <p className="text-center text-muted">
-                    Tell me about your site, lab or attachment — I usually reply in 24–48 hours.
+                    Tell me about your site, lab, attachment, or app idea — I usually reply in 24–48 hours.
                   </p>
                   <ContactForm inline />
                 </Col>
