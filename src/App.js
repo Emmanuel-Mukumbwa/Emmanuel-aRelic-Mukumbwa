@@ -1,3 +1,4 @@
+// src/App.js
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainNavbar from './components/MainNavbar';
@@ -13,6 +14,7 @@ const About = lazy(() => import('./pages/About'));
 const GetStarted = lazy(() => import('./pages/GetStarted'));
 const Resume = lazy(() => import('./pages/Resume')); 
 const Testimonials = lazy(() => import('./pages/Testimonials'));
+const Quotes = lazy(() => import('./pages/Quotes'));
 // optionally add other pages you plan to create: Services, Blog, etc.
 
 function LoaderFallback() {
@@ -40,6 +42,7 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/cv" element={<Resume />} />
           <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/quotes" element={<Quotes />} />
           {/* Fallback route(s) can be added here */}
         </Routes>
       </Suspense>
