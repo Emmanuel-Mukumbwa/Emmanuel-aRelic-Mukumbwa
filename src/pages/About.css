@@ -1,20 +1,20 @@
-/* src/pages/About.css
-   Complete, updated styles for About page including featured testimonials.
-   - Light / dark theme variables provided (auto-switch if you add .dark-theme or body.dark)
-   - Featured testimonials now have good contrast and readable metadata.
-*/
-
 /* -------------------- HERO / GENERAL -------------------- */
 .about-page .hero-stats .badge {
   font-weight: 600;
   opacity: 0.95;
 }
-
+ 
 .about-portrait {
   max-width: 320px;
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
   padding: 12px;
+}
+
+/* proof bar */
+.proof-bar .badge {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.7rem;
 }
 
 /* service tiles */
@@ -53,18 +53,27 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
+/* Sticky bottom CTA */
+.sticky-cta {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-radius: 50px;
+}
+
 /* -------------------- THEME VARIABLES -------------------- */
-/* Defaults assume a light background (text darker). Adjust .dark-theme or body.dark to invert. */
 :root {
   --featured-quote-color: rgba(0,0,0,0.92);
   --featured-meta-color: rgba(0,0,0,0.55);
-  --featured-name-color: #0f5132; /* bootstrap success-dark */
+  --featured-name-color: #0f5132;
   --featured-card-bg: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
   --featured-border: rgba(0,0,0,0.04);
   --featured-avatar-border: rgba(255,255,255,0.02);
 }
 
-/* Dark-theme overrides: add .dark-theme to body or root when using dark UI */
+/* Dark-theme overrides */
 body.dark, .dark-theme {
   --featured-quote-color: rgba(255,255,255,0.94);
   --featured-meta-color: rgba(255,255,255,0.65);
@@ -74,7 +83,7 @@ body.dark, .dark-theme {
   --featured-avatar-border: rgba(0,0,0,0.04);
 }
 
-/* -------------------- FEATURED TESTIMONIALS (About page) -------------------- */
+/* -------------------- FEATURED TESTIMONIALS -------------------- */
 .featured-testimonials {
   margin-top: 0.5rem;
   display: flex;
@@ -82,7 +91,6 @@ body.dark, .dark-theme {
   gap: 0.75rem;
 }
 
-/* tile */
 .featured-tile {
   display: flex;
   gap: 1rem;
@@ -99,7 +107,6 @@ body.dark, .dark-theme {
   box-shadow: 0 10px 24px rgba(0,0,0,0.08);
 }
 
-/* left column (avatar + logo) */
 .featured-left {
   width: 96px;
   flex-shrink: 0;
@@ -108,7 +115,6 @@ body.dark, .dark-theme {
   align-items: center;
 }
 
-/* avatar */
 .featured-avatar {
   width: 72px;
   height: 72px;
@@ -120,7 +126,6 @@ body.dark, .dark-theme {
   border: 1px solid var(--featured-avatar-border);
 }
 
-/* optional small org logo below avatar */
 .featured-logo {
   max-width: 88px;
   max-height: 28px;
@@ -130,7 +135,6 @@ body.dark, .dark-theme {
   display: block;
 }
 
-/* quote text — uses variable for theme-aware contrast */
 .featured-quote {
   font-size: 1.02rem;
   line-height: 1.45;
@@ -138,7 +142,6 @@ body.dark, .dark-theme {
   margin: 0 0 .35rem 0;
 }
 
-/* metadata row */
 .featured-meta {
   margin-top: 0.45rem;
   gap: 0.5rem;
@@ -146,34 +149,29 @@ body.dark, .dark-theme {
   flex-wrap: wrap;
 }
 
-/* name emphasis */
 .featured-name {
   color: var(--featured-name-color);
   font-weight: 700;
   letter-spacing: 0.1px;
 }
 
-/* role/date muted */
 .featured-role,
 .featured-date {
   color: var(--featured-meta-color);
   font-size: 0.85rem;
 }
 
-/* meta dot */
 .meta-dot {
   color: var(--featured-meta-color);
   font-size: 0.85rem;
   margin: 0 4px;
 }
 
-/* rating stars (if used) */
 .featured-rating .star {
   color: #f5b301;
   font-size: 0.95rem;
 }
 
-/* small screens */
 @media (max-width: 767px) {
   .featured-tile {
     flex-direction: row;
@@ -191,27 +189,14 @@ body.dark, .dark-theme {
   }
 }
 
-/* optional: subtle divider between featured section and other content */
-.card .featured-testimonials + .mt-3 {
-  margin-top: 1rem;
+/* Responsive sticky CTA */
+@media (max-width: 576px) {
+  .sticky-cta {
+    bottom: 10px;
+    right: 10px;
+  }
+  .sticky-cta .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 }
-
-/* -------------------- SMALL POLISH & FALLBACKS -------------------- */
-/* Ensure the blockquote color for other uses gets a readable fallback */
-.blockquote {
-  color: rgba(0,0,0,0.8);
-}
-
-/* If your site uses an overall dark background without .dark-theme, you can force
-   testimonials to use the light-on-dark palette by uncommenting this block:
-   (Only enable if you know your site background is dark and texts are white.)
-*/
-/*
-:root {
-  --featured-quote-color: rgba(255,255,255,0.94);
-  --featured-meta-color: rgba(255,255,255,0.65);
-  --featured-name-color: #8be38b;
-}
-*/
-
-/* -------------------- END -------------------- */
