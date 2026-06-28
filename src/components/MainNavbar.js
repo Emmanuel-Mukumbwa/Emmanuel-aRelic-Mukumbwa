@@ -1,3 +1,4 @@
+// src/components/MainNavbar.js
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
@@ -70,6 +71,15 @@ export default function MainNavbar() {
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               Contact
+            </Nav.Link>
+            {/* 👇 New Pricing link */}
+            <Nav.Link
+              as={NavLink}
+              to="/quotes"
+              onClick={handleLinkClick}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              Pricing
             </Nav.Link>
           </Nav>
 
