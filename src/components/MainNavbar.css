@@ -1,4 +1,3 @@
-/* src/components/MainNavbar.css */
 :root {
   --navbar-bg: rgba(18, 18, 18, 0.92);
   --navbar-border: rgba(255, 255, 255, 0.05);
@@ -12,8 +11,14 @@
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--navbar-border);
   padding: 0.6rem 0;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
   z-index: 1030;
+}
+
+/* Scroll-aware: deeper background + shadow */
+.navbar-custom.scrolled {
+  background: rgba(18, 18, 18, 0.98);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .brand-name {
@@ -49,6 +54,17 @@
 .navbar-custom .nav-link.active {
   color: var(--active-color) !important;
   background: rgba(76, 154, 255, 0.1);
+}
+
+/* Pricing highlight */
+.pricing-link {
+  position: relative;
+}
+
+.pricing-dot {
+  color: #198754;
+  font-size: 10px;
+  margin-left: 4px;
 }
 
 /* Custom toggler (hamburger) */
@@ -113,6 +129,12 @@
   background-color: #157347;
 }
 
+/* Link-style button for CV */
+.cv-btn {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px) {
   .navbar-custom .nav-link {
@@ -120,6 +142,19 @@
   }
   .social-icons {
     display: none;
+  }
+  /* Stack CTAs vertically on mobile for cleaner flow */
+  .navbar-custom .d-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .quote-btn,
+  .cv-btn {
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
   }
 }
 
