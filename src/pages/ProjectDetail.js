@@ -20,7 +20,7 @@ function resolveAsset(path) {
     return `${process.env.PUBLIC_URL || ''}/assets/${path}`;
   }
 }
-
+ 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
