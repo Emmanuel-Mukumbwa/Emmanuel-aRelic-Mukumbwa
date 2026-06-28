@@ -13,7 +13,10 @@ import {
   FaChalkboardTeacher,
   FaShieldAlt,
   FaCogs,
-  FaMobileAlt
+  FaMobileAlt,
+  FaArrowRight,
+  FaEnvelope,
+  FaClock
 } from 'react-icons/fa';
 import './About.css';
 import ContactForm from '../components/ContactForm';
@@ -27,10 +30,7 @@ const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
   `https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(seed)}&scale=100`;
 
 /**
- * Services & skills now reflect a full ICT professional offering:
- * - systems / network / communications / integrations / audits / training / reporting
- * - mobile & offline‑first apps
- *
+ * Services & skills now reflect a full ICT professional offering.
  * NOTE: adjust any numbers / "starting from" prices in PricingCard to match your real rates.
  */
 
@@ -157,8 +157,13 @@ function PricingCard() {
           </ListGroup.Item>
         </ListGroup>
 
-        <div className="mt-3">
-          <small className="text-muted">Contact for a custom quote — prices vary by scope and travel.</small>
+        <div className="mt-3 d-grid">
+          <Button href="/contact?subject=Custom%20Quote" variant="success" size="sm">
+            Get a Custom Quote
+          </Button>
+          <div className="text-muted small mt-2 text-center">
+            <FaClock className="me-1" /> Response time: 24–48 hours
+          </div>
         </div>
       </Card.Body>
     </Card>
@@ -193,6 +198,14 @@ export default function About() {
               <p className="text-muted small">
                 I focus on outcomes that matter locally — resilient connections, clear technical reports, and tools that can be used and maintained with limited resources. My recent work includes an offline‑first finance tracker built with Flutter, and the CampusTalent recruitment platform.
               </p>
+
+              {/* Proof Bar */}
+              <div className="proof-bar d-flex flex-wrap gap-2 mt-3">
+                <Badge bg="success">10+ systems deployed</Badge>
+                <Badge bg="success">5+ campus deployments</Badge>
+                <Badge bg="success">Offline-first apps shipped</Badge>
+                <Badge bg="success">CCNA-level networking</Badge>
+              </div>
 
               <div className="hero-stats d-flex gap-3 mt-3 flex-wrap">
                 <Badge bg="success">CampusTalent — lead dev</Badge>
@@ -248,17 +261,25 @@ export default function About() {
                   <Row xs={1} md={2} className="g-3">
                     {services.map(s => (
                       <Col key={s.id}>
-                        <div className="service-tile p-3 h-100">
+                        <div className="service-tile p-3 h-100 d-flex flex-column">
                           <div className="d-flex align-items-start gap-2 mb-2">
                             <div style={{ fontSize: 20, color: '#16a34a' }}>{s.icon}</div>
                             <h5 className="mb-0">{s.title}</h5>
                           </div>
                           <p className="text-muted small mb-2">{s.desc}</p>
-                          <div className="small">
+                          <div className="small flex-grow-1">
                             {s.bullets.map(b => (
                               <div key={b}><FaCheckCircle className="text-success me-1" /> {b}</div>
                             ))}
                           </div>
+                          <Button
+                            size="sm"
+                            variant="outline-success"
+                            className="mt-3 w-100"
+                            href={`/contact?subject=${encodeURIComponent(s.title)}`}
+                          >
+                            Request this service <FaArrowRight className="ms-1" />
+                          </Button>
                         </div>
                       </Col>
                     ))}
@@ -266,19 +287,44 @@ export default function About() {
                 </Card.Body>
               </Card>
 
-              {/* TIMELINE */}
+              {/* IMPACT / RESULTS */}
+              <Card className="glass-card mb-4">
+                <Card.Body>
+                  <h4 className="mb-3">Impact & Outcomes</h4>
+                  <Row>
+                    <Col md={6}>
+                      <ul className="text-muted small">
+                        <li>Reduced downtime through structured server setups</li>
+                        <li>Improved campus network reliability via VLAN planning</li>
+                        <li>Enabled offline-first operations for low-connectivity environments</li>
+                      </ul>
+                    </Col>
+                    <Col md={6}>
+                      <ul className="text-muted small">
+                        <li>Built production-ready recruitment platform (CampusTalent)</li>
+                        <li>Delivered hands-on ICT training to students & staff</li>
+                        <li>Implemented secure payment integrations for local systems</li>
+                      </ul>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              {/* TIMELINE (truncated + badge year) */}
               <Card className="glass-card mb-4">
                 <Card.Body>
                   <h4 className="mb-3">Journey so far</h4>
                   <ListGroup variant="flush">
                     {timeline.map((t, idx) => (
                       <ListGroup.Item key={idx} className="timeline-item">
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between align-items-start">
                           <div>
                             <strong>{t.title}</strong>
-                            <div className="text-muted small">{t.detail}</div>
+                            <div className="text-muted small">
+                              {t.detail.length > 140 ? t.detail.slice(0, 140) + '...' : t.detail}
+                            </div>
                           </div>
-                          <div className="text-muted small">{t.year}</div>
+                          <Badge bg="secondary" className="ms-2 flex-shrink-0">{t.year}</Badge>
                         </div>
                       </ListGroup.Item>
                     ))}
@@ -369,6 +415,13 @@ export default function About() {
             </Col>
           </Row>
         </Container>
+
+        {/* Sticky bottom CTA */}
+        <div className="sticky-cta">
+          <Button variant="success" size="lg" href="/contact?subject=Request%20a%20Quote">
+            <FaEnvelope className="me-2" /> Request a Quote
+          </Button>
+        </div>
       </main>
     </>
   );
