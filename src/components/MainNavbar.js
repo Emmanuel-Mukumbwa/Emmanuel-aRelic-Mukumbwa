@@ -9,11 +9,21 @@ export default function MainNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // scroll-aware state
 
   // Close navbar when route changes (ensures mobile menu closes after navigation)
   useEffect(() => {
     setExpanded(false);
   }, [location]);
+
+  // Scroll listener for premium shadow effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLinkClick = () => setExpanded(false);
 
@@ -23,7 +33,7 @@ export default function MainNavbar() {
       onToggle={(next) => setExpanded(next)}
       expand="lg"
       variant="dark"
-      className="navbar-custom"
+      className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}
       sticky="top"
       collapseOnSelect
     >
@@ -39,74 +49,42 @@ export default function MainNavbar() {
 
         <Navbar.Collapse id="main-nav">
           <Nav className="me-auto">
-            <Nav.Link
-              as={NavLink}
-              to="/"
-              end
-              onClick={handleLinkClick}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+            <Nav.Link as={NavLink} to="/" end onClick={handleLinkClick} className={({ isActive }) => (isActive ? 'active' : '')}>
               Home
             </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to="/about"
-              onClick={handleLinkClick}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+            <Nav.Link as={NavLink} to="/about" onClick={handleLinkClick} className={({ isActive }) => (isActive ? 'active' : '')}>
               About
             </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to="/projects"
-              onClick={handleLinkClick}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+            <Nav.Link as={NavLink} to="/projects" onClick={handleLinkClick} className={({ isActive }) => (isActive ? 'active' : '')}>
               Projects
             </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to="/contact"
-              onClick={handleLinkClick}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+            <Nav.Link as={NavLink} to="/contact" onClick={handleLinkClick} className={({ isActive }) => (isActive ? 'active' : '')}>
               Contact
             </Nav.Link>
-            {/* 👇 New Pricing link */}
+            {/* Pricing link with subtle green dot indicator */}
             <Nav.Link
               as={NavLink}
               to="/quotes"
               onClick={handleLinkClick}
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => (isActive ? 'active pricing-link' : 'pricing-link')}
             >
-              Pricing
+              Pricing <span className="pricing-dot">●</span>
             </Nav.Link>
           </Nav>
 
           <div className="d-flex align-items-center gap-2">
             <div className="social-icons d-none d-md-flex">
-              <a
-                href="https://github.com/Emmanuel-Mukumbwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="social-link"
-              >
+              <a href="https://github.com/Emmanuel-Mukumbwa" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link">
                 <FaGithub />
               </a>
-              <a
-                href="https://linkedin.com/in/emmanuel-mukumbwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="social-link"
-              >
+              <a href="https://linkedin.com/in/emmanuel-mukumbwa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">
                 <FaLinkedin />
               </a>
             </div>
 
+            {/* PRIMARY CTA – Request Quote (green) */}
             <Button
-              variant="outline-light"
+              variant="success"
               size="sm"
               className="quote-btn"
               onClick={() => {
@@ -117,10 +95,11 @@ export default function MainNavbar() {
               Request Quote
             </Button>
 
+            {/* SECONDARY CTA – View CV (link‑style for subtle hierarchy) */}
             <Button
-              variant="success"
+              variant="link"
               size="sm"
-              className="cv-btn"
+              className="cv-btn text-white text-decoration-none"
               onClick={() => {
                 handleLinkClick();
                 navigate('/resume');
