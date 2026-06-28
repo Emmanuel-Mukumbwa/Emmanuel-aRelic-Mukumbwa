@@ -6,7 +6,7 @@ import ReactGA from 'react-ga4';
 
 export default function ContactForm({
   presetSubject = '',
-  inline = false,          // if true, render inline; otherwise return a fragment (caller wraps in card/column)
+  inline = false,
   onSuccess = null
 }) {
   const [form, setForm] = useState({
@@ -16,7 +16,8 @@ export default function ContactForm({
     budget: '',
     timeline: '',
     message: '',
-    website: '' // honeypot
+    heardFrom: '',   // new
+    website: ''      // honeypot
   });
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -34,7 +35,6 @@ export default function ContactForm({
   }
 
   const sendViaServer = async () => {
-    // optional server-side endpoint (recommended). If not implemented, this call will fail and we fallback to EmailJS.
     const payload = {
       name: form.name,
       email: form.email,
@@ -42,6 +42,7 @@ export default function ContactForm({
       budget: form.budget,
       timeline: form.timeline,
       message: form.message,
+      heardFrom: form.heardFrom,
       subject: presetSubject || 'Website contact',
       to_email: CONTACT_TO_EMAIL
     };
@@ -73,6 +74,7 @@ export default function ContactForm({
       budget: form.budget,
       timeline: form.timeline,
       message: form.message,
+      heard_from: form.heardFrom,
     };
 
     return emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -100,7 +102,6 @@ export default function ContactForm({
     setLoading(true);
 
     try {
-      // try server endpoint first (if you add it). Otherwise fallback to EmailJS.
       try {
         await sendViaServer();
       } catch (serverErr) {
@@ -108,11 +109,19 @@ export default function ContactForm({
         await sendViaEmailJS();
       }
 
-      // GA event (if configured)
       try { ReactGA.event({ category: 'Contact', action: 'Submit', label: presetSubject || 'General' }); } catch (e) {}
 
       setShowSuccess(true);
-      setForm({ name: '', email: '', projectType: '', budget: '', timeline: '', message: '', website: '' });
+      setForm({
+        name: '',
+        email: '',
+        projectType: '',
+        budget: '',
+        timeline: '',
+        message: '',
+        heardFrom: '',
+        website: ''
+      });
       onSuccess && onSuccess();
     } catch (err) {
       console.error('Contact send error', err);
@@ -140,39 +149,59 @@ export default function ContactForm({
       </Row>
 
       <Row>
-        <Col md={4}>
+        <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label>Project type</Form.Label>
             <Form.Select name="projectType" value={form.projectType} onChange={handleChange} disabled={loading}>
               <option value="">Select</option>
-              <option>Website / Landing</option>
-              <option>API / Integration</option>
-              <option>Admin Dashboard</option>
-              <option>UX Audit</option>
+              <option>Website / Landing Page</option>
+              <option>Mobile App (Flutter)</option>
+              <option>Systems & Server Admin</option>
+              <option>Network & WiFi Setup</option>
+              <option>API / Payment Integration</option>
+              <option>Training / Workshop</option>
+              <option>IT Audit / Assessment</option>
               <option>Other</option>
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col md={4}>
+        <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label>Budget</Form.Label>
             <Form.Select name="budget" value={form.budget} onChange={handleChange} disabled={loading}>
               <option value="">Select</option>
-              <option>MWK 25,000 - 75,000</option>
-              <option>MWK 100,000 - 300,000</option>
+              <option>Below MWK 50,000</option>
+              <option>MWK 50,000 – 150,000</option>
+              <option>MWK 150,000 – 350,000</option>
               <option>MWK 350,000+</option>
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col md={4}>
+      </Row>
+
+      <Row>
+        <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label>Timeline</Form.Label>
             <Form.Select name="timeline" value={form.timeline} onChange={handleChange} disabled={loading}>
               <option value="">Select</option>
-              <option>1 - 3 days</option>
-              <option>3 - 7 days</option>
-              <option>1 - 4 weeks</option>
+              <option>1 – 3 days</option>
+              <option>3 – 7 days</option>
+              <option>1 – 4 weeks</option>
               <option>1+ months</option>
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col md={6}>
+          <Form.Group className="mb-3">
+            <Form.Label>How did you hear about me?</Form.Label>
+            <Form.Select name="heardFrom" value={form.heardFrom} onChange={handleChange} disabled={loading}>
+              <option value="">Select</option>
+              <option>Google Search</option>
+              <option>LinkedIn</option>
+              <option>Referral / Colleague</option>
+              <option>YWAM / Campus</option>
+              <option>Other</option>
             </Form.Select>
           </Form.Group>
         </Col>
@@ -191,19 +220,28 @@ export default function ContactForm({
 
       {error && <Alert variant="danger" className="mb-2">{error}</Alert>}
 
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center flex-wrap gap-2">
         <Button type="submit" disabled={loading} variant="success" aria-label="Send message">
           {loading ? <><Spinner animation="border" size="sm" /> <span className="ms-2">Sending…</span></> : 'Send Message'}
         </Button>
 
         <Button
           variant="outline-secondary"
-          className="ms-2"
           href="https://calendly.com/your-calendly"
           target="_blank"
           rel="noopener noreferrer"
         >
           Book a 15m Call
+        </Button>
+
+        {/* 👇 New button – view detailed quotes */}
+        <Button
+          variant="outline-success"
+          href="/quotes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Detailed Quotes
         </Button>
       </div>
     </Form>
