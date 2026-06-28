@@ -12,7 +12,8 @@ import {
   FaTools,
   FaChalkboardTeacher,
   FaShieldAlt,
-  FaCogs
+  FaCogs,
+  FaMobileAlt
 } from 'react-icons/fa';
 import './About.css';
 import ContactForm from '../components/ContactForm';
@@ -28,6 +29,7 @@ const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
 /**
  * Services & skills now reflect a full ICT professional offering:
  * - systems / network / communications / integrations / audits / training / reporting
+ * - mobile & offline‑first apps
  *
  * NOTE: adjust any numbers / "starting from" prices in PricingCard to match your real rates.
  */
@@ -62,6 +64,13 @@ const services = [
     bullets: ['Mobile-money friendly flows', 'Webhook handling', 'Retry & idempotency']
   },
   {
+    id: 'mobile',
+    title: 'Mobile & Offline‑First Apps',
+    icon: <FaMobileAlt />,
+    desc: 'Cross‑platform apps (Android, iOS, Web) with offline storage and cloud sync. Deliverables: ready‑to‑ship app, Google Sheets / Firebase backend, and deployment notes.',
+    bullets: ['Flutter (Dart)', 'Offline SQLite', 'Google Sheets sync', 'Firebase Auth']
+  },
+  {
     id: 'security',
     title: 'Security & Monitoring',
     icon: <FaShieldAlt />,
@@ -80,7 +89,8 @@ const services = [
 const skills = [
   'Network fundamentals', 'System diagnostics', 'Linux basics', 'Windows Server', 'Router & firewall basics',
   'VoIP / comms basics', 'Technical reporting', 'Troubleshooting', 'Documentation & handover',
-  'APIs & integrations', 'Payment flows', 'Testing & monitoring'
+  'APIs & integrations', 'Payment flows', 'Testing & monitoring',
+  'Flutter / Dart', 'Firebase', 'Google Sheets API', 'SQLite (offline)', 'REST APIs'
 ];
 
 const timeline = [
@@ -88,6 +98,16 @@ const timeline = [
     year: '2024–25',
     title: 'CampusTalent — Capstone & Systems Integration',
     detail: 'Led design and deployment of the CampusTalent MVP (React, Node.js, MySQL) with recruiter verification and PayChangu payment flows. Delivered deployment notes, runbooks, and a recruiter dashboard used in pilot tests.'
+  },
+  {
+    year: '2026',
+    title: 'Offline‑First Finance App (Flutter)',
+    detail: 'Built a mobile app for financial tracking that works entirely offline. Features SQLite local storage, Firebase authentication, Google Sheets cloud sync, human‑readable transaction references, and automatic sign‑out reconciliation. Deployed on Android, web, and Windows.'
+  },
+  {
+    year: 'April 2026 – present',
+    title: 'Volunteer Staff — YWAM Blantyre',
+    detail: 'Serving as a volunteer developer and ICT expert at YWAM Blantyre. Developed and maintain the base’s offline‑first finance tracking app, provide ongoing technical support, and advise on ICT infrastructure to improve daily operations and data management.'
   },
   {
     year: 'Industrial Attachment',
@@ -131,6 +151,10 @@ function PricingCard() {
             <strong>Small website + payment MVP</strong>
             <div className="text-muted small">Starting from MWK 100,000 — includes deployment and 30 days support</div>
           </ListGroup.Item>
+          <ListGroup.Item>
+            <strong>Mobile app (Flutter)</strong>
+            <div className="text-muted small">Starting from MWK 120,000 — cross‑platform, offline‑first, Google Sheets sync, and deployment</div>
+          </ListGroup.Item>
         </ListGroup>
 
         <div className="mt-3">
@@ -151,9 +175,8 @@ export default function About() {
         <title>About — Emmanuel (aRelic) Mukumbwa</title>
         <meta
           name="description"
-          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networking, communications, integrations and practical training in Malawi."
+          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networking, communications, integrations, offline‑first mobile apps, and practical training. Based in Blantyre, Malawi. Volunteer developer & ICT expert at YWAM Blantyre."
         />
-        {/* Optional: you can add JSON-LD Person schema here for SEO */}
       </Helmet>
 
       <main className="about-page">
@@ -161,28 +184,29 @@ export default function About() {
           {/* HERO / STORY */}
           <Row className="align-items-center mb-4">
             <Col lg={7}>
-              <h1 className="mb-2">Practical ICT solutions — systems, networks, training and reporting.</h1>
+              <h1 className="mb-2">Practical ICT solutions — systems, networks, apps, training and reporting.</h1>
 
               <p className="lead text-muted">
-                I’m Emmanuel (aRelic), an IT professional with CCNA-level networking knowledge and full-stack developer with a BSc in ICT. I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. From site assessments and network rollouts to payment integrations and hands-on training, I deliver local-first solutions teams can run and students can learn from.
+                I’m Emmanuel (aRelic), an IT professional with CCNA-level networking knowledge and full-stack developer with a BSc in ICT. I design, deploy, and document maintainable ICT systems for campuses, NGOs, and small businesses. I also serve as a volunteer developer and ICT expert at YWAM Blantyre, supporting their operations with practical tech tools.
               </p>
 
               <p className="text-muted small">
-                I focus on outcomes that matter locally — resilient connections, clear technical reports, and tools that can be used and maintained with limited resources.
+                I focus on outcomes that matter locally — resilient connections, clear technical reports, and tools that can be used and maintained with limited resources. My recent work includes an offline‑first finance tracker built with Flutter, and the CampusTalent recruitment platform.
               </p>
 
               <div className="hero-stats d-flex gap-3 mt-3 flex-wrap">
                 <Badge bg="success">CampusTalent — lead dev</Badge>
-                <Badge bg="success">Hostel Management System</Badge>
+                <Badge bg="success">Offline‑First Finance App</Badge>
+                <Badge bg="success">Volunteer @ YWAM Blantyre</Badge>
                 <Badge bg="success">CCNA (2025)</Badge>
                 <Badge bg="success">Workshops delivered</Badge>
               </div>
 
-              {/* Quick stats (safe facts) */}
+              {/* Quick stats */}
               <div className="quick-stats d-flex gap-3 mt-3 flex-wrap small text-muted">
-                <div><strong>Role:</strong> Network admin & full-stack dev</div>
-                <div><strong>Location:</strong> Chitipa, Malawi</div>
-                <div><strong>Focus:</strong> Systems, networks, integrations, training</div>
+                <div><strong>Role:</strong> Network admin, full-stack dev & volunteer ICT expert</div>
+                <div><strong>Location:</strong> Blantyre, Malawi</div>
+                <div><strong>Focus:</strong> Systems, networks, apps, integrations, training</div>
               </div>
 
               <div className="mt-4 d-flex gap-2">
@@ -201,7 +225,7 @@ export default function About() {
                     src={emmanuel1xJpg}
                     srcSet={`${emmanuel1xJpg} 1x, ${emmanuel2xJpg} 2x`}
                     sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
-                    alt="Emmanuel Mukumbwa — ICT consultant, Chitipa, Malawi"
+                    alt="Emmanuel Mukumbwa — ICT consultant, Blantyre, Malawi"
                     className="hero-circle-img about-portrait hero-illustration"
                     loading="lazy"
                     decoding="async"
@@ -262,7 +286,7 @@ export default function About() {
                 </Card.Body>
               </Card>
 
-              {/* References (instead of testimonials) */}
+              {/* References */}
               <Card className="glass-card">
                 <Card.Body>
                   <h4 className="mb-3">References</h4>
@@ -322,6 +346,7 @@ export default function About() {
                     <li>3–5 day WiFi / LAN rollout → network plan, configuration, and staff handover</li>
                     <li>1–2 day practical workshop → lab exercises, participant guides, and follow-up checklist</li>
                     <li>Small web project → MVP site, payment integration, and 30-day support handover</li>
+                    <li>Mobile app → Flutter cross‑platform app with offline storage and cloud sync</li>
                   </ul>
 
                   <div className="d-grid mt-3">
@@ -331,7 +356,7 @@ export default function About() {
                 </Card.Body>
               </Card>
 
-              {/* Pricing card inserted here */}
+              {/* Pricing card */}
               <PricingCard />
 
               <Card className="glass-card">
