@@ -1,0 +1,105 @@
+/* src/pages/Quotes.css */
+
+/* ---- Hero ---- */
+.quotes-hero {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-bottom: 1px solid #dee2e6;
+}
+
+.trust-badge {
+  background: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---- Sticky category navigation ---- */
+.sticky-categories {
+  position: sticky;
+  top: 56px; /* adjust if your navbar height differs */
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sticky-categories .nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 3px solid transparent;
+  transition: 0.2s;
+}
+
+.sticky-categories .nav-link.active,
+.sticky-categories .nav-link:hover {
+  color: #16a34a;
+  border-bottom-color: #16a34a;
+}
+
+/* ---- Section anchors (for scroll spy) ---- */
+.section-anchor {
+  scroll-margin-top: 140px; /* height of navbar + sticky nav */
+}
+
+/* ---- Pricing cards ---- */
+.pricing-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.pricing-card.popular {
+  border: 2px solid #16a34a;
+}
+
+.pricing-icon {
+  font-size: 1.8rem;
+  color: #16a34a;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.popular-ribbon {
+  position: absolute;
+  top: 12px;
+  right: -35px;
+  background: #16a34a;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 3rem;
+  transform: rotate(45deg);
+  z-index: 10;
+}
+
+/* ---- Glass card (reused from other pages) ---- */
+.glass-card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+}
+
+/* ---- Responsive adjustments ---- */
+@media (max-width: 768px) {
+  .sticky-categories {
+    top: 56px;
+  }
+  .section-anchor {
+    scroll-margin-top: 110px;
+  }
+}
