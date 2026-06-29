@@ -341,7 +341,7 @@ export default function Resume() {
                   <div className="d-flex align-items-center gap-2">
                     <FaCertificate size={28} className="text-success" />
                     <div>
-                      <h6 className="mb-1">Udemy React Certificate</h6>
+                      <h6 className="mb-1">Udemy CCNA Course Certificate</h6>
                       <a href="https://www.udemy.com/certificate/UC-b63a1744-4fa8-474e-a45b-374313eed177/" target="_blank" rel="noreferrer" className="small">
                         View credential
                       </a>
@@ -360,7 +360,7 @@ export default function Resume() {
             <Row className="g-3">
               {[
                 'Production CampusTalent MVP',
-                'CCNA Certified (2025)',
+                'CCNA Cource Certification (2025)',
                 'Volunteer ICT Expert at YWAM Blantyre',
                 'ICT Instructor at Paradox Technical College',
                 'Industrial Attachment Completed (2025)',
