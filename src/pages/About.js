@@ -16,7 +16,8 @@ import {
   FaMobileAlt,
   FaArrowRight,
   FaEnvelope,
-  FaClock
+  FaClock,
+  FaLaptop
 } from 'react-icons/fa';
 import './About.css';
 import ContactForm from '../components/ContactForm';
@@ -57,6 +58,13 @@ const services = [
     bullets: ['Cable organisation', 'Device placement', 'Site-checklists & handover']
   },
   {
+    id: 'computer',
+    title: 'Computer & Technical Support',
+    icon: <FaLaptop />,
+    desc: 'Computer maintenance, software installation, hardware support, data backup and recovery, and on‑site troubleshooting. Deliverables: service checklist, repair notes, and a follow‑up plan.',
+    bullets: ['System installation & setup', 'Hardware repair & upgrades', 'Data backup & recovery', 'On‑site support']
+  },
+  {
     id: 'integrations',
     title: 'Payment & Systems Integrations',
     icon: <FaCogs />,
@@ -90,7 +98,8 @@ const skills = [
   'Network fundamentals', 'System diagnostics', 'Linux basics', 'Windows Server', 'Router & firewall basics',
   'VoIP / comms basics', 'Technical reporting', 'Troubleshooting', 'Documentation & handover',
   'APIs & integrations', 'Payment flows', 'Testing & monitoring',
-  'Flutter / Dart', 'Firebase', 'Google Sheets API', 'SQLite (offline)', 'REST APIs'
+  'Flutter / Dart', 'Firebase', 'Google Sheets API', 'SQLite (offline)', 'REST APIs',
+  'Computer maintenance', 'Hardware troubleshooting', 'OS installation', 'Data recovery basics'
 ];
 
 const timeline = [
@@ -180,7 +189,7 @@ export default function About() {
         <title>About — Emmanuel (aRelic) Mukumbwa</title>
         <meta
           name="description"
-          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networking, communications, integrations, offline‑first mobile apps, and practical training. Based in Blantyre, Malawi. Volunteer developer & ICT expert at YWAM Blantyre."
+          content="Emmanuel (aRelic) Mukumbwa — ICT professional specialising in systems, networking, communications, integrations, offline‑first mobile apps, computer & technical support, and practical training. Based in Blantyre, Malawi. Volunteer developer & ICT expert at YWAM Blantyre."
         />
       </Helmet>
 
@@ -219,7 +228,7 @@ export default function About() {
               <div className="quick-stats d-flex gap-3 mt-3 flex-wrap small text-muted">
                 <div><strong>Role:</strong> Network admin, full-stack dev & volunteer ICT expert</div>
                 <div><strong>Location:</strong> Blantyre, Malawi</div>
-                <div><strong>Focus:</strong> Systems, networks, apps, integrations, training</div>
+                <div><strong>Focus:</strong> Systems, networks, apps, integrations, computer support, training</div>
               </div>
 
               <div className="mt-4 d-flex gap-2">
@@ -304,6 +313,7 @@ export default function About() {
                         <li>Built production-ready recruitment platform (CampusTalent)</li>
                         <li>Delivered hands-on ICT training to students & staff</li>
                         <li>Implemented secure payment integrations for local systems</li>
+                        <li>Provided computer maintenance & repair support for clients</li>
                       </ul>
                     </Col>
                   </Row>
@@ -384,6 +394,7 @@ export default function About() {
                     <li>Student founders and campus clubs</li>
                     <li>Small businesses, NGOs and campus IT teams</li>
                     <li>Researchers and lecturers who need practical systems tools</li>
+                    <li>Individuals and organisations needing computer repair and maintenance</li>
                   </ul>
 
                   <h6 className="mt-3">Typical engagement</h6>
@@ -393,6 +404,7 @@ export default function About() {
                     <li>1–2 day practical workshop → lab exercises, participant guides, and follow-up checklist</li>
                     <li>Small web project → MVP site, payment integration, and 30-day support handover</li>
                     <li>Mobile app → Flutter cross‑platform app with offline storage and cloud sync</li>
+                    <li>Computer setup or repair → OS installation, driver/software setup, hardware fix, and handover checklist</li>
                   </ul>
 
                   <div className="d-grid mt-3">
@@ -424,5 +436,5 @@ export default function About() {
         </div>
       </main>
     </>
-  );
+  );  
 }
