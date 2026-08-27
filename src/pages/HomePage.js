@@ -21,6 +21,7 @@ import {
   FaCode,
   FaCheckCircle,
   FaQuoteRight,
+  FaLaptop,
 } from 'react-icons/fa';
 import './Home.css';
 
@@ -38,6 +39,7 @@ const floatingTechs = [
   { icon: <SiFirebase />, label: 'Firebase' },
   { icon: <SiMysql />, label: 'MySQL' },
   { icon: <FaNetworkWired />, label: 'Networking' },
+  { icon: <FaLaptop />, label: 'Tech Support' },
 ];
 
 // ----- Skill categories for the expertise section -----
@@ -56,6 +58,11 @@ const expertiseAreas = [
     title: 'Training & Documentation',
     items: ['Technical Writing', 'Workshops', 'Mentorship', 'Reports & Runbooks'],
     icon: <FaChalkboardTeacher size={28} />,
+  },
+  {
+    title: 'Computer & Technical Support',
+    items: ['System Installations', 'Hardware Repair', 'Data Backup & Recovery', 'On‑site Support'],
+    icon: <FaLaptop size={28} />,
   },
 ];
 
@@ -125,7 +132,7 @@ export default function HomePage() {
         <title>aRelic | ICT Consultancy & Software Development</title>
         <meta
           name="description"
-          content="Emmanuel (aRelic) Mukumbwa — ICT consultancy offering software, mobile apps, networking, infrastructure, and training for NGOs, SMEs, and education in Malawi."
+          content="Emmanuel (aRelic) Mukumbwa — ICT consultancy offering software, mobile apps, networking, infrastructure, computer support, and training for NGOs, SMEs, and education in Malawi."
         />
       </Helmet>
 
@@ -154,15 +161,30 @@ export default function HomePage() {
                 <h2 className="h5 text-muted mb-4">
                   Building Practical ICT Solutions for Malawi and Beyond
                 </h2>
-                <div className="hero-badges d-flex flex-wrap gap-2 mb-4">
-                  <Badge bg="success">Full‑stack Development</Badge>
-                  <Badge bg="success">ICT Infrastructure</Badge>
-                  <Badge bg="success">Networking</Badge>
-                  <Badge bg="success">Flutter Apps</Badge>
-                  <Badge bg="success">Linux Servers</Badge>
+
+                {/* Hero service tiles (replaces badges) */}
+                <div className="hero-badges">
+                  {[
+                    'Full-stack Development',
+                    'ICT Infrastructure',
+                    'Networking',
+                    'Flutter Apps',
+                    'Linux Servers',
+                    'Computer Support',
+                  ].map((service) => (
+                    <div key={service} className="hero-service-tile">
+                      <FaCheckCircle className="hero-service-icon" aria-hidden="true" />
+                      <span>{service}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="d-flex gap-3">
-                  <Button href="/contact?subject=Schedule%20Consultation" variant="success" size="lg">
+
+                <div className="hero-actions">
+                  <Button
+                    href="/contact?subject=Schedule%20Consultation"
+                    variant="success"
+                    size="lg"
+                  >
                     Schedule Consultation
                   </Button>
                   <Button href="/projects" variant="outline-success" size="lg">
@@ -170,6 +192,7 @@ export default function HomePage() {
                   </Button>
                 </div>
               </Col>
+
               <Col lg={5} className="text-center mt-4 mt-lg-0">
                 <div className="hero-circle">
                   <picture>
@@ -210,16 +233,25 @@ export default function HomePage() {
           <Container>
             <AnimatedSection>
               <h2 className="text-center section-title mb-5">Areas of Expertise</h2>
-              <Row className="g-4">
+              <Row className="g-4 expertise-grid">
                 {expertiseAreas.map((area, i) => (
-                  <Col md={4} key={i}>
+                  <Col xs={12} sm={6} lg={3} key={i}>
                     <Card className="expertise-card h-100">
-                      <Card.Body className="text-center">
-                        <div className="expertise-icon mb-3">{area.icon}</div>
-                        <Card.Title className="h5">{area.title}</Card.Title>
-                        <ul className="list-unstyled small text-muted">
+                      <Card.Body>
+                        <div className="expertise-icon mb-3 text-center">
+                          {area.icon}
+                        </div>
+                        <Card.Title className="h5 text-center mb-3">
+                          {area.title}
+                        </Card.Title>
+                        <ul className="expertise-list">
                           {area.items.map((item, j) => (
-                            <li key={j}><FaCheckCircle className="text-success me-1" /> {item}</li>
+                            <li key={j}>
+                              <span className="expertise-check" aria-hidden="true">
+                                <FaCheckCircle />
+                              </span>
+                              <span className="expertise-item-text">{item}</span>
+                            </li>
                           ))}
                         </ul>
                       </Card.Body>
@@ -327,11 +359,14 @@ export default function HomePage() {
             <AnimatedSection>
               <h2 className="text-center section-title mb-4">Why Work with aRelic?</h2>
               <Row className="justify-content-center">
-                <Col lg={8}>
-                  <div className="d-flex flex-wrap justify-content-center gap-3">
+                <Col lg={10}>
+                  <div className="trust-grid">
                     {trustReasons.map((reason, i) => (
-                      <div key={i} className="trust-badge bg-light px-3 py-2 rounded-pill">
-                        <FaCheckCircle className="text-success me-1" /> {reason}
+                      <div key={i} className="trust-item">
+                        <span className="trust-check" aria-hidden="true">
+                          <FaCheckCircle />
+                        </span>
+                        <span className="trust-text">{reason}</span>
                       </div>
                     ))}
                   </div>
