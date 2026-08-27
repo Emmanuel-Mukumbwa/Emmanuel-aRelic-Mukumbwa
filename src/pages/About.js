@@ -243,7 +243,7 @@ export default function About() {
               <div className="about-story-photo">
                 <img
                   src={emmanuel02Jpg}
-                  alt="Emmanuel Mukumbwa — ICT consultant and developer, Blantyre, Malawi"
+                  alt="Emmanuel aRelic Mukumbwa — ICT consultant and developer, Blantyre, Malawi"
                   className="img-fluid about-story-img"
                   loading="lazy"
                   decoding="async"
