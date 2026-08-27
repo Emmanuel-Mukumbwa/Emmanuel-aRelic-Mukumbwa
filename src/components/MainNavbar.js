@@ -1,5 +1,5 @@
 // src/components/MainNavbar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
@@ -9,7 +9,12 @@ export default function MainNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // scroll-aware state
+  const [scrolled, setScrolled] = useState(false);
+
+  // Scroll to top immediately when the route changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   // Close navbar when route changes (ensures mobile menu closes after navigation)
   useEffect(() => {
