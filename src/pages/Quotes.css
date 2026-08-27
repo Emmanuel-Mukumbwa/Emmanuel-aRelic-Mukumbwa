@@ -1,4 +1,7 @@
-/* src/pages/Quotes.css */
+/* ---- Smooth scrolling for the whole page ---- */
+html {
+  scroll-behavior: smooth;
+}
 
 /* ---- Hero ---- */
 .quotes-hero {
@@ -19,28 +22,67 @@
 /* ---- Sticky category navigation ---- */
 .sticky-categories {
   position: sticky;
-  top: 56px; /* adjust if your navbar height differs */
+  top: 56px;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.sticky-categories .nav-link {
-  color: #495057;
-  font-weight: 500;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 3px solid transparent;
-  transition: 0.2s;
+.category-nav {
+  min-height: 58px;
+  align-items: stretch;
 }
 
-.sticky-categories .nav-link.active,
-.sticky-categories .nav-link:hover {
-  color: #16a34a;
-  border-bottom-color: #16a34a;
+.category-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b !important;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 1rem 1rem;
+  border: 0 !important;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.category-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.category-nav-link.active,
+.category-nav-link:hover {
+  color: #15803d !important;
+  background: rgba(22, 163, 74, 0.035);
+}
+
+.category-nav-link.active::after {
+  background: #16a34a;
+}
+
+/* ---- Desktop / mobile nav toggles ---- */
+.category-nav-desktop {
+  display: block;
+}
+
+.category-nav-mobile {
+  display: none;
 }
 
 /* ---- Section anchors (for scroll spy) ---- */
 .section-anchor {
-  scroll-margin-top: 140px; /* height of navbar + sticky nav */
+  scroll-margin-top: 140px;
 }
 
 /* ---- Pricing cards ---- */
@@ -86,7 +128,23 @@
   z-index: 10;
 }
 
-/* ---- Glass card (reused from other pages) ---- */
+/* Feature toggle (mobile only) */
+.feature-toggle {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin-top: 0.5rem;
+  color: #15803d;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feature-toggle:hover {
+  text-decoration: underline;
+}
+
+/* ---- Glass card ---- */
 .glass-card {
   background: rgba(255,255,255,0.8);
   backdrop-filter: blur(8px);
@@ -94,12 +152,141 @@
   border-radius: 16px;
 }
 
+/* ---- Payment cards ---- */
+.payment-card .payment-percent {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #16a34a;
+  margin: 0.5rem 0;
+}
+
+/* ---- Quick price tables ---- */
+.quick-table {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.quick-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.quick-table td,
+.quick-table th {
+  vertical-align: middle;
+}
+
+.quick-table .text-end {
+  white-space: nowrap;
+}
+
+/* ---- Accordions ---- */
+.service-details-accordion .accordion-button,
+.faq-accordion .accordion-button {
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+  padding: 0.9rem 1rem;
+  box-shadow: none;
+  border: 1px solid rgba(15,23,42,0.06);
+  scroll-margin-top: 130px;  /* so sticky nav doesn't cover when scrolled to */
+}
+
+.service-details-accordion .accordion-button:not(.collapsed),
+.faq-accordion .accordion-button:not(.collapsed) {
+  background: #f8fafc;
+  color: #15803d;
+}
+
+.service-details-accordion .accordion-body,
+.faq-accordion .accordion-body {
+  background: #fff;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(15,23,42,0.06);
+  border-top: 0;
+}
+
+/* Accordion items also get scroll margin */
+.accordion-item {
+  scroll-margin-top: 130px;
+}
+
+/* ---- Prevent scroll chaining and anchor jumps ---- */
+.quotes-page {
+  overscroll-behavior: contain;
+  scroll-padding-top: 130px;   /* accounts for sticky header in all anchor scrolls */
+}
+
 /* ---- Responsive adjustments ---- */
-@media (max-width: 768px) {
-  .sticky-categories {
-    top: 56px;
+@media (max-width: 767px) {
+  .category-nav-desktop {
+    display: none;
   }
+
+  .category-nav-mobile {
+    display: block;
+    padding: 0.55rem 0;
+  }
+
+  .category-select-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+  }
+
+  .category-select {
+    min-height: 46px;
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    background-color: #fff;
+  }
+
   .section-anchor {
     scroll-margin-top: 110px;
+  }
+
+  .trust-badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .quick-table {
+    font-size: 0.8rem;
+  }
+
+  .pricing-card .btn {
+    font-size: 0.9rem;
+  }
+
+  .sticky-categories {
+    top: 56px;
+    padding: 0;
+  }
+
+  /* Keep accordion header accessible */
+  .accordion-button {
+    scroll-margin-top: 120px;
+  }
+
+  .accordion-item {
+    scroll-margin-top: 120px;
+  }
+}
+
+@media (max-width: 375px) {
+  .trust-badge {
+    font-size: 0.75rem;
+  }
+
+  .category-select {
+    font-size: 0.85rem;
   }
 }
