@@ -22,9 +22,8 @@ import {
 import './About.css';
 import ContactForm from '../components/ContactForm';
 import testimonials from '../data/testimonials';
-// Portrait images (1x and 2x) — kept small for faster load and crisp on HiDPI screens
-import emmanuel1xJpg from '../assets/emmanuel-800.jpg';
-import emmanuel2xJpg from '../assets/emmanuel-1600.jpg';
+// Second, contextual image for the About story section
+import emmanuel02Jpg from '../assets/emmanuel02.jpg';
 
 // helper for DiceBear fallback avatars
 const getPlaceholder = (seed = 'Emmanuel-aRelic') =>
@@ -240,23 +239,22 @@ export default function About() {
               </div>
             </Col>
 
-            <Col lg={5} className="text-center mt-4 mt-lg-0">
-              <div className="hero-circle" aria-hidden={false}>
-                <picture>
-                  <img
-                    src={emmanuel1xJpg}
-                    srcSet={`${emmanuel1xJpg} 1x, ${emmanuel2xJpg} 2x`}
-                    sizes="(max-width: 767px) 260px, (max-width: 991px) 360px, 420px"
-                    alt="Emmanuel Mukumbwa — ICT consultant, Blantyre, Malawi"
-                    className="hero-circle-img about-portrait hero-illustration"
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = getPlaceholder('Emmanuel-aRelic');
-                    }}
-                  />
-                </picture>
+            <Col lg={5} className="mt-4 mt-lg-0">
+              <div className="about-story-photo">
+                <img
+                  src={emmanuel02Jpg}
+                  alt="Emmanuel Mukumbwa — ICT consultant and developer, Blantyre, Malawi"
+                  className="img-fluid about-story-img"
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = getPlaceholder('Emmanuel-aRelic');
+                  }}
+                />
+                <p className="about-photo-caption text-muted small mt-2">
+                  Emmanuel Mukumbwa — ICT professional & developer
+                </p>
               </div>
             </Col>
           </Row>
