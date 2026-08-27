@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Container,
   Row,
-  Col, 
+  Col,
   Badge,
   Button,
   Spinner,
@@ -25,9 +25,10 @@ import {
   FaLightbulb,
   FaLayerGroup,
   FaListUl,
-  FaChartLine,
   FaWrench,
   FaQuoteLeft,
+  FaTrophy,
+  FaFileAlt,
 } from 'react-icons/fa';
 
 function resolveAsset(path) {
@@ -83,6 +84,12 @@ function ProjectDetail() {
           (p.industry && p.industry === project.industry))
     )
     .slice(0, 3);
+
+  const contributions =
+    project.contributions || project.contribution || [];
+
+  const impact = project.impact || null;
+  const outcomes = impact?.outcomes || project.outcome || [];
 
   const openLightbox = (src) => {
     setLightboxSrc(src);
@@ -264,14 +271,14 @@ function ProjectDetail() {
             )}
 
             {/* Contribution */}
-            {project.contribution && project.contribution.length > 0 && (
+            {contributions.length > 0 && (
               <section className="case-section mb-5">
                 <h2 className="section-heading">
                   <FaWrench className="me-2 text-success" />
                   My Contribution
                 </h2>
                 <ul className="contribution-list">
-                  {project.contribution.map((item, idx) => (
+                  {contributions.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
                 </ul>
@@ -295,18 +302,55 @@ function ProjectDetail() {
               </section>
             )}
 
-            {/* Outcome */}
-            {project.outcome && project.outcome.length > 0 && (
+            {/* Impact / Results */}
+            {impact && (
               <section className="case-section mb-5">
                 <h2 className="section-heading">
-                  <FaChartLine className="me-2 text-success" />
-                  Outcome
+                  <FaTrophy className="me-2 text-success" />
+                  Impact & Results
                 </h2>
-                <ul className="outcome-list">
-                  {project.outcome.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
+
+                {impact.headline && (
+                  <p className="lead mb-4">{impact.headline}</p>
+                )}
+
+                {impact.metrics && impact.metrics.length > 0 && (
+                  <Row className="g-3 mb-4">
+                    {impact.metrics.map((metric, idx) => (
+                      <Col sm={6} key={idx}>
+                        <div className="impact-metric-card">
+                          <div className="impact-value">{metric.value}</div>
+                          <div className="impact-label">{metric.label}</div>
+                        </div>
+                      </Col>
+                    ))}
+                  </Row>
+                )}
+
+                {outcomes.length > 0 && (
+                  <div className="mb-4">
+                    <h5>Outcomes</h5>
+                    <ul className="outcome-list">
+                      {outcomes.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {impact.evidence && impact.evidence.length > 0 && (
+                  <div>
+                    <h5>Evidence</h5>
+                    <ul className="evidence-list">
+                      {impact.evidence.map((item, idx) => (
+                        <li key={idx}>
+                          <FaFileAlt className="text-success me-2" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </section>
             )}
 
