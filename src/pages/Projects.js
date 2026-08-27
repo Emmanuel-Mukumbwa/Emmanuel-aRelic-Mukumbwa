@@ -1,3 +1,4 @@
+// src/pages/Projects.js
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -169,6 +170,21 @@ export default function Projects() {
     });
   };
 
+  // Helper to get impact summary for cards
+  const getImpactSummary = (project) => {
+    if (project.impact) {
+      if (project.impact.headline) return project.impact.headline;
+      if (project.impact.metrics && project.impact.metrics.length > 0) {
+        const m = project.impact.metrics[0];
+        return `${m.value} ${m.label}`;
+      }
+    }
+    if (project.outcome && project.outcome.length > 0) {
+      return project.outcome[0];
+    }
+    return null;
+  };
+
   return (
     <>
       <Helmet>
@@ -279,6 +295,7 @@ export default function Projects() {
             <Row className="g-4">
               {featuredProjects.slice(0, 3).map((p) => {
                 const hero = resolveAsset(p.heroImage) || PLACEHOLDER_IMAGE;
+                const impactSummary = getImpactSummary(p);
                 return (
                   <Col lg={6} key={p.id}>
                     <Card className="h-100 project-card featured-project-card">
@@ -302,10 +319,10 @@ export default function Projects() {
                         <h3 className="h4 mb-2">{p.title}</h3>
                         <p className="text-muted mb-3">{p.shortDescription}</p>
 
-                        {p.problem && p.solution && (
+                        {p.challenge && p.solution && (
                           <div className="case-study-preview mb-3">
                             <p className="mb-1">
-                              <strong>Problem:</strong> {p.problem}
+                              <strong>Problem:</strong> {p.challenge}
                             </p>
                             <p className="mb-1">
                               <strong>Solution:</strong> {p.solution}
@@ -321,9 +338,9 @@ export default function Projects() {
                           ))}
                         </div>
 
-                        {p.impact && (
+                        {impactSummary && (
                           <p className="mb-2">
-                            <strong>Outcome:</strong> {p.impact}
+                            <strong>Impact:</strong> {impactSummary}
                           </p>
                         )}
 
@@ -353,9 +370,9 @@ export default function Projects() {
                               Live Demo ↗
                             </Button>
                           )}
-                          {p.github && (
+                          {p.repo && (
                             <Button
-                              href={p.github}
+                              href={p.repo}
                               target="_blank"
                               rel="noreferrer"
                               variant="outline-secondary"
@@ -380,6 +397,7 @@ export default function Projects() {
           <Row className="g-4">
             {displayedProjects.map((p) => {
               const hero = resolveAsset(p.heroImage) || PLACEHOLDER_IMAGE;
+              const impactSummary = getImpactSummary(p);
               return (
                 <Col md={6} lg={4} key={p.id}>
                   <Card className="h-100 project-card">
@@ -417,9 +435,9 @@ export default function Projects() {
                         )}
                       </div>
 
-                      {p.impact && (
+                      {impactSummary && (
                         <p className="mb-2">
-                          <strong>Outcome:</strong> {p.impact}
+                          <strong>Impact:</strong> {impactSummary}
                         </p>
                       )}
 
@@ -451,9 +469,9 @@ export default function Projects() {
                             Live Demo ↗
                           </Button>
                         )}
-                        {p.github && (
+                        {p.repo && (
                           <Button
-                            href={p.github}
+                            href={p.repo}
                             target="_blank"
                             rel="noreferrer"
                             variant="outline-secondary"
