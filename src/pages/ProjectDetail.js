@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Container,
   Row,
-  Col,
+  Col, 
   Badge,
   Button,
   Spinner,
