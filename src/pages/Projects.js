@@ -15,8 +15,15 @@ import ReactGA from 'react-ga4';
 import projects from '../data/projects';
 import './Projects.css';
 
-// Local fallback image (create this file or use a simple SVG placeholder)
-const PLACEHOLDER_IMAGE = `${process.env.PUBLIC_URL || ''}/assets/project-placeholder.png`;
+// Stable inline SVG placeholder – always loads, never broken
+const PLACEHOLDER_IMAGE =
+  'data:image/svg+xml;charset=UTF-8,' +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+       <rect width="800" height="600" fill="#f1f5f9"/>
+       <text x="400" y="300" font-family="Arial, sans-serif" font-size="28" fill="#64748b" text-anchor="middle">No Image Available</text>
+     </svg>`
+  );
 
 function resolveAsset(path) {
   if (!path) return null;
@@ -30,8 +37,6 @@ function resolveAsset(path) {
     return `${process.env.PUBLIC_URL || ''}/assets/${path}`;
   }
 }
-
-const fallbackImage = PLACEHOLDER_IMAGE;
 
 // Extract unique categories and sort them
 const allCategories = [
@@ -252,7 +257,7 @@ export default function Projects() {
           </Col>
         </Row>
 
-        {/* Category filters (scrollable on mobile) */}
+        {/* Category filters (wrap on mobile) */}
         <div className="project-filters mb-4">
           {allCategories.map((cat) => (
             <Button
@@ -260,7 +265,7 @@ export default function Projects() {
               size="sm"
               variant={filter === cat ? 'success' : 'outline-secondary'}
               onClick={() => handleFilterClick(cat)}
-              className="me-1 mb-1"
+              className="me-1 mb-2"
             >
               {cat === 'all' ? 'All' : cat.toUpperCase()}
             </Button>
@@ -273,7 +278,7 @@ export default function Projects() {
             <h2 className="h3 mb-3">Featured Work</h2>
             <Row className="g-4">
               {featuredProjects.slice(0, 3).map((p) => {
-                const hero = resolveAsset(p.heroImage) || fallbackImage;
+                const hero = resolveAsset(p.heroImage) || PLACEHOLDER_IMAGE;
                 return (
                   <Col lg={6} key={p.id}>
                     <Card className="h-100 project-card featured-project-card">
@@ -285,7 +290,7 @@ export default function Projects() {
                           loading="lazy"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = fallbackImage;
+                            e.target.src = PLACEHOLDER_IMAGE;
                           }}
                         />
                         <span className="featured-badge">★ Featured</span>
@@ -374,7 +379,7 @@ export default function Projects() {
           <h2 className="h3 mb-3">More Projects</h2>
           <Row className="g-4">
             {displayedProjects.map((p) => {
-              const hero = resolveAsset(p.heroImage) || fallbackImage;
+              const hero = resolveAsset(p.heroImage) || PLACEHOLDER_IMAGE;
               return (
                 <Col md={6} lg={4} key={p.id}>
                   <Card className="h-100 project-card">
@@ -386,7 +391,7 @@ export default function Projects() {
                         loading="lazy"
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = fallbackImage;
+                          e.target.src = PLACEHOLDER_IMAGE;
                         }}
                       />
                     </div>
